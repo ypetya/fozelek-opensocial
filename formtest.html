@@ -1,0 +1,128 @@
+<html>
+    <head>
+         <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <link href="common.css" media="screen" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js"></script>
+<script language="javascript">
+    
+    var fozelek=new function() {
+
+        var log = function( var, val) {
+            $('log').update($('log').value + var + ' : ' + val + '<br/>');
+
+        }
+
+        var logActivity = function( txt ) {
+            //történés rögzítése
+            var params = {};
+            params[opensocial.Activity.Field.TITLE] = txt;
+            var activity = opensocial.newActivity(params);
+            opensocial.requestCreateActivity(activity,opensocial.CreateActivityPriority.HIGH);
+        }
+
+        //beupdateljük az igazságot, ez majd segít eldönteni a finomfőzelékről...
+        var lockDown = function(event,text) {
+          Event.stop(event);
+          $('az_igazsag').update( text );
+          logActivity( text );
+        }
+
+        var setData = function( varname, data ) {
+            var req = opensocial.newDataRequest();
+            req.add(req.newUpdatePersonAppDataRequest("VIEWER", varname, data));
+            req.send();   
+        }
+
+        var igen = function(event) {
+            setData( 'fozelek', {szereti:igen} );
+            lockDown(event,'Feltétlen főtt étel!');
+        }
+
+        var nem = function(event) {
+            setData( 'fozelek', {szereti:nem} );
+            lockDown(event,'Nem szeretem a főzeléket!' );
+        }
+
+        var extractFozelekData = function(data, person) {
+		if(data[person.getId()]) {
+			var fozi = gadgets.json.parse(gadgets.util.unescapeString(data[person.getId()]['fozelek']));
+                        if( fozi.szereti == "igen" ){
+                            return true;
+                        }
+                }
+
+                return false;
+        }
+
+        var load = function(data) {
+            alert('megjött!');
+            var viewer = data.get('viewer').getData();
+            var owner = data.get('owner').getData();
+        }
+
+        var requestData = function(){
+            alert('request_data');
+            var viewer = opensocial.newIdSpec({ "userId" : "VIEWER" });
+            var owner = opensocial.newIdSpec({ "userId" : "OWNER" });
+            var req = opensocial.newDataRequest();
+            req.add(req.newFetchPersonRequest(opensocial.IdSpec.PersonId.VIEWER), 'viewer');
+            req.add(req.newFetchPersonRequest(opensocial.IdSpec.PersonId.OWNER), 'owner');
+            req.add(req.newFetchPersonAppDataRequest(viewer, 'fozelek'), 'viewerData');
+            req.add(req.newFetchPersonAppDataRequest(owner, 'fozelek'), 'ownerData');
+            
+ /* ezt a háttérben kéne kigyűjteni :)
+
+            var friends_params = {};
+            friends_params[opensocial.DataRequest.PeopleRequestFields.MAX] = 20;
+            //név szerint rendezve
+            friends_params[opensocial.DataRequest.PeopleRequestFields.SORT_ORDER] = opensocial.DataRequest.SortOrder.NAME;
+            //csak azokat, akiknek telepítve van az alkalmazás
+            friends_params[opensocial.DataRequest.PeopleRequestFields.FILTER] =	opensocial.DataRequest.FilterType.HAS_APP;
+            var ownerFriends = opensocial.newIdSpec({ "userId" : "OWNER", "groupId" : "FRIENDS" });
+            //ismerősök, es a hozzájuk tartozó alkalmazás-adatok
+            req.add(req.newFetchPeopleRequest(ownerFriends, friends_params), 'ownerFriends');
+            req.add(req.newFetchPersonAppDataRequest(ownerFriends, 'fozelek', friends_params), 'ownerFriendsData');
+
+            */
+
+
+            req.send(load);
+            alert('oninit');
+        }
+
+
+        return {
+            init: function() {
+                alert('init');
+                $('igen').observe('click', igen);
+                $('nem').observe('click', nem);
+                requestData();
+            }
+        }
+    }();
+</script>
+
+
+<div id="az_igazsag" style="font-family:verdana;font-weight:bold;">
+    
+<form id="kutatas">
+    <p>
+        Finomfőzelék?
+        <input id="igen" type="button" value="igen" style="float:left"/>
+        <input id="nem" type="button" value="nem" style="float:left"/>
+    </p>
+</form>
+
+</div>
+
+
+<div id="log">
+</div>
+
+<script lang="javascript">
+    fozelek.init();
+</script>
+</body>
+</html>

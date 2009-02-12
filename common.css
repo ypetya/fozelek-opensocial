@@ -1,0 +1,41 @@
+body {
+  color: #04041d;
+  background-color: #e4ebfd;
+  padding: 15px;
+  margin: 0px;
+  font-family: Verdana;
+}
+
+a:hover	{
+  text-decoration:underline;
+}
+
+img {
+  border: none;
+  padding: 2px;
+}
+
+.body {
+  border: 1px solid #c4c4c4;
+  background-color: white;
+}
+
+a{
+  font-weight: bold;
+  text-decoration: underline;
+  color: #3374dc;
+  text-decoration:none;
+}
+
+div{
+  padding: 10px;
+  font-size: 12px;
+}
+
+div.small{
+  font-size: 10px;
+}
+
+li{
+  text-indent: 1em;
+}
