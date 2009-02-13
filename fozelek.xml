@@ -161,7 +161,8 @@
 
 
 <div id="az_igazsag" style="font-family:verdana;font-weight:bold;">
-    
+</div>
+
 <form id="kutatas">
     <p>
         Finomfőzelék?
@@ -170,7 +171,6 @@
     </p>
 </form>
 
-</div>
 
 <br/>
 
