@@ -55,13 +55,13 @@
           logActivity( text );
         }
 
-        var sendData = function( varname, data ) {
+        var sendData = function( varname, adat ) {
             var req = opensocial.newDataRequest();
-            req.add(req.newUpdatePersonAppDataRequest("VIEWER", varname, data));
+            req.add(req.newUpdatePersonAppDataRequest("VIEWER", varname, adat));
             req.send();
             info('sendData');
             log('Varname', varname);
-            log('Data',data['szereti']);            
+            log('Data',adat['szereti']);            
         }
 
         var igen = function(event) {
