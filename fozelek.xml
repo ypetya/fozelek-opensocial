@@ -29,6 +29,7 @@
 <script type="text/javascript">
     var fozelek=new function() {
         // Konstantsok
+        var DEBUG = true;
         var CRLF = '<br/>';
         var SZERETED = 'Feltétlen főtt étel!';
         var SZERETI = 'Szereti a főzeléket!';
@@ -103,6 +104,8 @@
         }
 
         var show_stat = function() {
+            log( 'Ennyiből', ennyibol);
+            log( 'Ennyien', ennyien);
             var st = $('statisztika');
             if(ennyien == 0){
                 st.update( 'Senki nem szereti a főzeléket!' );
@@ -209,6 +212,7 @@
         }
 
         var log = function( variable, val) {
+                if(!DEBUG) return;
                 var value_part = '';
                 if( val != 'undefined' ) value_part = ' : "' + val + '"';
                 $('log').innerHTML = $('log').innerHTML + variable + value_part + CRLF;
