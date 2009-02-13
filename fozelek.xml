@@ -36,9 +36,9 @@
             $('log').innerHTML = $('log').innerHTML + variable + value_part + CRLF;
         }
 
-        var info = function( message ) {
-            alert( message);
-            log( message, 'undefined');
+        var info = function( msg ) {
+            alert( msg );
+            log( msg, 'undefined');
         }
 /*
         var logActivity = function( txt ) {
@@ -126,7 +126,6 @@
             }
         }
     }();
-    alert('most');
     info('Meghívja a fozelek.init-et');
     gadgets.util.registerOnLoadHandler(fozelek.init);
 </script>
