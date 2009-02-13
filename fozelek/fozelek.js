@@ -198,20 +198,26 @@ var fozelek=new function() {
     }
 //}}}
 //{{{ helper
+    var jq_id = function(nev){
+        return '#' + nev;
+    }
+    var j = function(id){
+        return $j(jq_id(id));
+    }
     // Elrejt, vagy megjelenít egy elemet
     var switch_hide = function(mit){
         var show = false;
         if(is_hidden(mit)) show = true;
 
-        $j(mit).attr('style',show ? '' : 'display:none');
+        j(mit).attr('style',show ? '' : 'display:none');
     }
     
     var hide = function(mit){
-        $j(mit).attr('style','display:none');
+        j(mit).attr('style','display:none');
     }
 
     var display = function(mit){
-        $j(mit).attr('style','');
+        j(mit).attr('style','');
     }
 
     var current_view = function(){
@@ -219,7 +225,7 @@ var fozelek=new function() {
     }
 
     var is_hidden = function(elem){
-        return ($j(elem).attr('style').match(/none/)) ? true : false;
+        return (j(elem).attr('style').match(/none/)) ? true : false;
     }
 //}}}
 //{{{ Lekérdezések
