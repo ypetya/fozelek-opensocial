@@ -74,7 +74,7 @@
         }
 */
         var load = function(data) {
-     //       info('Megjött a válasz!');
+            info('Megjött a válasz!');
             var viewer = data.get('viewer').getData();
             var owner = data.get('owner').getData();
         }
@@ -103,7 +103,7 @@
             */
 
 
-   //         info('OnInit: Elküldöm az első requestData-kérést');
+            info('OnInit: Elküldöm az első requestData-kérést');
             req.send(load);
         }
 
@@ -121,7 +121,7 @@
 
         return {
             init: function() {
-               info('init');
+               info('init.');
                $('igen').observe('click', igen);
                $('nem').observe('click', nem);
                requestData();
