@@ -1,15 +1,22 @@
 var fozelek=new function() {
-    // Konstantsok
+    
+//{{{ Konstansok
     var DEBUG = true;
     var CRLF = '<br/>';
     var SZERETED = 'Feltétlen főtt étel!';
     var SZERETI = 'Szereti a főzeléket!';
     var NEM_SZERETED ='Nem szeretem a főzeléket!';
     var NEM_SZERETI = 'Nem szereti a főzeléket!';
+//}}}
 
+//{{{ Számlálók
     var ennyibol = 0;
     var ennyien = 0;
+//}}}
 
+//{{{ Küldő rész
+
+    // Activity küldés
     var logActivity = function( txt ) {
         //történés rögzítése
         var params = {};
@@ -19,16 +26,15 @@ var fozelek=new function() {
         log('logActivity',txt);
     }
 
-//{{{ Küldő rész
-
-    //beupdateljük az igazságot, ez majd segít eldönteni a finomfőzelékről...
+    // Beupdateljük az igazságot, 
+    // ez majd segít eldönteni a finomfőzelékről...
     var lockDown = function(event,text) {
       Event.stop(event);
       show( text );
       logActivity( text );
     }
 
-    // ez az adat a felposztoláshoz kell
+    // Ez az adat a felposztoláshoz kell
     var adat = false;
 
     var sendData = function( varname, data ) {
@@ -53,7 +59,6 @@ var fozelek=new function() {
         lockDown(event, NEM_SZERETED);
     }
 //}}}
-
 
     var extractFozelekData = function(data, person) {
         if(person != null && data[person.getId()]) {
@@ -108,10 +113,12 @@ var fozelek=new function() {
     }
 //}}}
 //{{{ Callback függvények
+    // Itt az ismerősök adatait dolgozzuk fel
     var load_stat = function(data) {
         info('Megjött a válasz a statisztika lekérdezésre');
-
+        // lekérdeztük a tulajdonos barátait..
         var friends = data.get('ownerFriends').getData();
+        // ..és az ő adataikat
         var friendsData = data.get('ownerFriendsData').getData();
 
         ennyibol = friends.size();
@@ -119,10 +126,10 @@ var fozelek=new function() {
         friends.each(function(person) {
             if(extractFozelekData(friendsData,person)) ennyien += 1;
         });
-
+        // Statisztika kiszámítás és kijelzés
         show_stat();
     }
-
+    // Itt a saját adatainkat
     var load = function(data) {
         info('Megjött a válasz!');
         var viewer = data.get('viewer').getData();
@@ -142,9 +149,10 @@ var fozelek=new function() {
         //itt jön a logika, => ha nem a sajátomat nézem, akkor
         if(idegen_oldal(viewer)) {
             valasz(true,szereti);
-            hide_choice();
+            hide('choice');
         }
         else {
+            //a sa
             valasz(false,szereted);
         }
 
@@ -158,9 +166,15 @@ var fozelek=new function() {
         setTimeout( start_stat, 60000 );
     }
 
-    var hide_choice = function(){
-        $('kutatas').update('');
+    var hide = function(mit){
+        switch(mit){
+            case 'choice':
+                //$('kutatas').update('');
+                $('kutatas').style="display:none";
+                break;
+        }
     }
+
 
 //{{{ Lekérdezések
 
