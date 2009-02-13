@@ -77,7 +77,7 @@
         }
 
         var extractFozelekData = function(data, person) {
-            if(person && data[person.getId()]) {
+            if(person != null && data[person.getId()]) {
                 var fozi = gadgets.json.parse(gadgets.util.unescapeString(data[person.getId()]['fozelek']));
                         if( fozi.szereti == "igen" ){
                             return true;
