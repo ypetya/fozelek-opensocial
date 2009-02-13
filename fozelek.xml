@@ -35,6 +35,9 @@
         var NEM_SZERETED ='Nem szeretem a főzeléket!';
         var NEM_SZERETI = 'Nem szereti a főzeléket!';
 
+        var ennyibol = 0;
+        var ennyien = 0;
+
         var logActivity = function( txt ) {
             //történés rögzítése
             var params = {};
@@ -89,6 +92,7 @@
         var idegen_oldal = function (viewer) {
             return !viewer.isOwner();
         }
+
         var valasz = function(idegen,igazsag) {
             if(igazsag){
                 show(idegen ? SZERETI : SZERETED);
@@ -96,6 +100,42 @@
             else {
                 show(idegen ? NEM_SZERETI : NEM_SZERETED);
             }
+        }
+
+        var show_stat = function() {
+            var st = $('statisztika');
+            if(ennyien == 0){
+                st.update( 'Senki nem szereti a főzeléket!' );
+            }
+            else {
+                if( ennyibol == 0 ) return;
+                if( ennyibol == ennyien ){
+                    st.update( 'A főzeléket mindenki szereti!');
+                    return;
+                }
+                st.update( '(' + ((ennyien / ennyibol) * 100).toString() + '%)');
+            }
+        }
+
+        var load_stat = function(data) {
+            info('Megjött a válasz a statisztika lekérdezésre');
+
+            var friends = data.get('friends').getData();
+            var friendsData = data.get('data').getData();
+
+            ennyibol = friends.size;
+            for(var i=0; i<ennyibol; i++){
+                if(extractFozelekData(friendsData,friends[i])) ennyien += 1;
+            }
+
+            show_stat();
+        }
+        
+        var start_stat = function() {
+            ennyibol = 1;
+            ennyien = 0;
+            requestData( 'stat', load_stat );
+            setTimeout( start_stat, 60000 );
         }
 
         var load = function(data) {
@@ -123,6 +163,8 @@
             else {
                 valasz(false,szereted);
             }
+
+            start_stat();
         }
 
         var hide_choice = function(){
@@ -130,20 +172,21 @@
         }
 
         /* a method-dal lehet megadni, hogy melyik lekérést hajtsuk végre */
-        var requestData = function( method ){
+        var requestData = function( method, callbackfunction ){
             var viewer = opensocial.newIdSpec({ "userId" : "VIEWER" });
             var owner = opensocial.newIdSpec({ "userId" : "OWNER" });
             var req = opensocial.newDataRequest();
 
             req.add(req.newFetchPersonRequest(opensocial.IdSpec.PersonId.VIEWER), 'viewer');
             req.add(req.newFetchPersonRequest(opensocial.IdSpec.PersonId.OWNER), 'owner');
+            
 
             switch(method) {
                 case 'init' :
                     req.add(req.newFetchPersonAppDataRequest(viewer, 'fozelek'), 'viewerData');
                     req.add(req.newFetchPersonAppDataRequest(owner, 'fozelek'), 'ownerData');
                     break;
-                case 'relations' :
+                case 'stat' :
                     /* ezt a háttérben kéne kigyűjteni :) */
                     var friends_params = {};
                     friends_params[opensocial.DataRequest.PeopleRequestFields.MAX] = 20;
@@ -153,8 +196,8 @@
                     friends_params[opensocial.DataRequest.PeopleRequestFields.FILTER] =	opensocial.DataRequest.FilterType.HAS_APP;
                     var ownerFriends = opensocial.newIdSpec({ "userId" : "OWNER", "groupId" : "FRIENDS" });
                     //ismerősök, es a hozzájuk tartozó alkalmazás-adatok
-                    req.add(req.newFetchPeopleRequest(ownerFriends, friends_params), 'ownerFriends');
-                    req.add(req.newFetchPersonAppDataRequest(ownerFriends, 'fozelek', friends_params), 'ownerFriendsData');
+                    req.add(req.newFetchPeopleRequest(ownerFriends, friends_params), 'friends');
+                    req.add(req.newFetchPersonAppDataRequest(ownerFriends, 'fozelek', friends_params), 'data');
                     break;
                 default:
                     break;
@@ -162,7 +205,7 @@
 
 
             log('OnInit: Elküldöm a requestData-kérést',method);
-            req.send(load);
+            req.send(callbackfunction);
         }
 
         var log = function( variable, val) {
@@ -180,7 +223,7 @@
                info('init.');
                $('igen').observe('click', igen);
                $('nem').observe('click', nem);
-               requestData('init');
+               requestData('init',load);
             }
         }
     }();
@@ -201,7 +244,10 @@
 
 
 <br/>
-
+<div>Összesítve:
+    <span id="statisztika"></span>
+</div>
+<br/>
 <div id="log"></div>
 ]]>
 
