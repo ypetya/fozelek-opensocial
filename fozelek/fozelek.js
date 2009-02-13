@@ -141,7 +141,7 @@ var fozelek=new function() {
 
     // Itt az ismerősök adatait dolgozzuk fel
     var load_stat = function(data) {
-        if(is_error()) return;
+        if(is_error(data)) return;
         info('Megjött a válasz a statisztika lekérdezésre');
         // lekérdeztük a tulajdonos barátait..
         var friends = data.get('ownerFriends').getData();
@@ -159,7 +159,7 @@ var fozelek=new function() {
 
     // Itt a saját adatainkat
     var load = function(data) {
-        if(is_error()) return;
+        if(is_error(data)) return;
         info('Megjött a válasz!');
         var viewer = data.get('viewer').getData();
         var owner = data.get('owner').getData();
