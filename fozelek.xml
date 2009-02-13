@@ -40,7 +40,6 @@
     <ul class="sidebar">
         <li class="zold">
             <label id="az_igazsag" style="display:none"> :) </label>
-            <a onclick='javascript: gadgets.views.requestNavigateTo(gadgets.views.getSupportedViews()["canvas"]);'>úgy gondolom</a>
         </li>
     </ul>
     
