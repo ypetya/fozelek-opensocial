@@ -1,0 +1,397 @@
+/* 
+iWiW Lite CSS
+=============
+iWiW-szerű stíluslap OpenSocial gadgetekhez.
+
+home: http://gazsbook.appspot.com
+blog: http://bergengocia.net
+
+
+=============
+Copyright 2008 Körtesi Gáspár <gazs@bergengocia.net>
+
+ This is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Lesser General Public License as
+ published by the Free Software Foundation; either version 2.1 of
+ the License, or (at your option) any later version.
+
+ This software is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public
+ License along with this software; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+*/
+
+html, body {
+  margin: 0;
+  padding: 0;
+  
+}
+
+#nav {
+  float: left;
+  width: 176px;
+  margin-right: 14px;
+}
+
+#content {
+  float: left;
+  width: 560px;
+}
+
+* {
+	font-family: verdana;
+	font-size: 11px;
+}
+
+code, pre {
+	font-family: Monaco, Courier, monospace;
+}
+
+h1 {
+	font-size:24px;
+}
+body {
+	background-color:white;
+	height:100%;
+}
+a {
+	color: rgb(0, 51, 163);
+}
+
+input[type=text],textarea{border:1px solid rgb(27, 28, 120)}
+textarea{ display:block;}
+label {
+	color:rgb(0, 0, 102);
+	font-weight:bold;
+	
+}
+
+select{border:1px solid rgb(27, 28, 120)}
+
+.comment {
+	color: rgb(49, 117, 222);
+	font-style:italic;
+	margin:0;
+}
+
+h1 {
+	color: rgb(49, 117, 222);
+}
+h2 {
+	color:rgb(191, 31, 28);
+	font-size:1.4em;
+	font-weight:bold;
+	margin-left:2px;
+	padding-left:13px;
+	margin-top:16px;
+	background:url(http://static.iwiw.net/common/image/icon_active_red.png) no-repeat left center;}
+
+}
+
+/*      gány*/
+.innerhelp{display:inline;}
+.innerhelp .text{display:none;cursor:pointer;}
+.innerhelp a{text-decoration:none;background:url(http://static.iwiw.net/common/image/icon_innerhelp.png) no-repeat 50% 50%;padding:2px 10px 2px 5px;}
+.innerhelp a:hover{text-decoration:none;background:url(http://static.iwiw.net/common/image/icon_innerhelp_active.png) no-repeat 50% 50%;}
+.innerhelp_text{display:none;}
+.innerhelp_text div{display:inline;}
+
+button,input[type=submit] {
+	background:#255DD5;
+	color:white;
+	font-family:verdana;
+	font-size:9px;
+	font-weight:bold;
+	display:block;
+	float:right;
+	margin:5px;
+	clear:both;
+	
+}
+
+hr {
+	margin:0;
+	padding:0;
+	border: 1px solid #DFE6F1;
+}
+
+.messageboard{
+	background: rgb(235, 242, 252);
+	font-size:10px;
+	border: 1px solid white;
+}
+.messageboard ul {
+	list-style:none;
+	margin:0;
+	padding:10px;
+}
+.messageboard .header a:before{
+	content:url(http://static.iwiw.net/common/image/icon_pc.png);
+	text-decoration:none;
+}
+.messageboard .header a {
+	
+	font-weight:bold;
+}
+.messageboard .message {
+	font-style:italic;
+	font-size:11px;
+}
+.messageboard .thumbnail {
+	float:right;
+	margin:10px;
+	border: 1px solid white;
+}
+.messageboard .date {
+	color:rgb(96, 97, 102);
+	font-size:11px;
+}
+
+.sidebar {
+	list-style:none;
+	padding:0;
+	background:#EFF4FC;
+	border: 2px solid #D9E4F8;
+	width:173px;
+	float:left;
+	margin-right:20px;
+	margin-bottom:20px;
+}
+.sidebar li {
+	display:block;
+	font-size:10px;
+	font-weight:bold;
+	text-decoration:underline;
+	background-color:rgb(239, 244, 253);
+	margin:0 3px 1px 0;
+	padding:3px 4px 2px 18px;
+}
+.sidebar li.active {
+	background:white url(http://static.iwiw.net/common/image/icon_active_lightblue.png) no-repeat 5px 5px;
+}
+.sidebar li.active a {text-decoration:none;}
+.sidebar li.zold {
+	border-left: 5px solid rgb(114, 222, 42);
+}
+
+.sidebar li.sotetzold {
+	border-left: 5px solid rgb(99, 169, 0);
+}
+
+
+.sidebar li.kek {
+	border-left: 5px solid rgb(0, 167, 255);
+}
+.sidebar li.barna{
+	border-left: 5px solid rgb(194, 145, 95);
+}
+
+ul.pager {
+	border: 1px solid rgb(0, 0, 102);
+	padding:5px;
+	text-align:right;
+}
+ul.pager li {
+	display:inline;list-style:none;
+	color:rgb(191, 31, 28);
+	font-weight:bold;
+}
+
+ul.pager li.disabled {
+	color:rgb(171, 170, 170);
+}
+
+ul.pager li.first:before {
+	content: url(http://static.iwiw.net/common/image/icon_pager_first.png);
+	margin-right:3px;
+}
+ul.pager li.previous:before {
+	content: url(http://static.iwiw.net/common/image/icon_pager_prev.png);
+	margin-right:3px;		
+}
+ul.pager li.last:after {
+	content: url(http://static.iwiw.net/common/image/icon_pager_last.png);
+	margin-left:3px;
+}
+ul.pager li.next:after {
+	content: url(http://static.iwiw.net/common/image/icon_pager_next.png);
+	margin-left:3px;		
+}
+
+.clear {
+	clear:both;
+}
+
+.card {
+	height:132px;
+	width:182px;
+	margin:1px;
+	float:left;
+	padding-top:4px;
+	position:relative;
+	border: 1px solid rgb(192, 192, 192);
+}
+.card.card_self {
+	border: 1px solid rgb(211, 184, 17);
+}
+.card.card_friend{
+	border: 1px solid rgb(123, 225, 53);
+}
+
+.card .name a{
+	font-weight:bold;
+	padding:4px;
+}
+.card .imagevideo {
+	border: 1px solid rgb(216, 229, 249);
+	margin-bottom:1px;
+	float:right;
+	height:64px;
+	right:4px;
+	top:20px;
+}
+
+.card .moreinfo a {
+	color: rgb(99, 169, 0);
+	font-size:9px;
+	padding:4px;		
+}
+.card .meta {
+	padding:4px;
+}
+.card .status {
+	position:absolute;
+	bottom:0;
+	height:26px;
+	width:182px;
+	line-height:26px;
+	background: url(http://static.iwiw.net/common/image/card/bg_unrelated.gif) repeat-x rgb(239, 239, 239);		
+}
+.card.card_self .status{
+	background: url(http://static.iwiw.net/common/image/card/bg_myself.gif) repeat-x rgb(245, 237, 174);
+}
+.card.card_friend .status {
+	background: url(http://static.iwiw.net/common/image/card/bg_friend.gif);
+}
+.card .status {
+	text-align:right;
+}
+.card .status a {
+	background-color:#D9E7FD;
+	border: 1px solid #99BFF9;
+	padding:4px;
+	margin-left:4px;
+	margin-right:4px;
+	text-decoration:none;
+	-webkit-border-radius:4px;
+	-moz-border-radius:4px;
+	
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border-left-color: rgb(128, 128, 128);
+	border-right-color: rgb(128, 128, 128);
+	border-top-color: rgb(128, 128, 128);
+}
+table td, table th {
+	padding: 5px;
+}
+table tr {
+	height: 30px;
+}
+table tr:hover {
+	background: #d7e4f9;
+}
+table thead th {
+	background-color: rgb(169, 202, 251);
+	font-weight: bold;
+	text-align: left;
+	border-right: solid 1px rgb(215, 228, 249);
+}
+table tbody td {
+	border-top: solid 1px rgb(169, 202, 251);
+	border-bottom: solid 1px rgb(169, 202, 251);
+	border-right: solid 1px rgb(215, 228, 249);
+}
+table tbody th {
+	background-color: rgb(169, 202, 251);
+	font-weight: bold;
+	text-align: left;
+	border-top: solid 1px rgb(169, 202, 251);
+	border-bottom: solid 1px rgb(169, 202, 251);
+	border-right: solid 1px rgb(215, 228, 249);
+}
+
+table.dataform td {
+	border-top: 1px solid rgb(169, 202, 251);
+	border-right: none;
+}
+table.dataform tr:hover {
+	background: white;
+}
+
+table.dataform td.label {
+	width: 200px;
+}
+
+.admin_message {
+  background: #ffdd70 url(http://static.iwiw.net/common/image/background_mm.gif) repeat-x;
+	border: 1px dotted black;
+	padding: 7px;
+	position: relative;
+	overflow: auto;
+}
+.admin_message h4 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.1em;
+	color: rgb(186, 36, 21);
+	width: 459px;
+}
+.admin_message p {
+  margin: 7px 0;
+  padding: 0;
+	width: 459px;
+}
+.admin_message .icon {
+	position: absolute;
+	right: 20px;
+	top: 8px;
+}
+.kisdoboz {
+	height:32px;width:32px; margin:5px; float:left;
+}
+
+#footer {
+	margin-top:40px;
+	background: rgb(235, 242, 252);
+	width:100%;
+	font-weight:bold;
+	line-height:20px;
+	clear:both;
+ 	color: rgb(0, 1, 104);
+}
+#footer p {
+	padding-left:5px;
+	margin:0;
+}
+#footer #logocsik {
+
+	background:white;
+	font-weight:normal;
+	text-align:right;
+}
+#footer #logocsik a {
+	color:#666;
+	text-decoration:none;
+}
+
+.emoticon {
+	margin-right:2px;
+}

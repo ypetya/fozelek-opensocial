@@ -150,7 +150,7 @@ var fozelek=new function() {
         //itt jön a logika, => ha nem a sajátomat nézem, akkor
         if(idegen_oldal(viewer)) {
             valasz(true,szereti);
-            hide('choice');
+            hide('kutatas');
         }
         else {
             valasz(false,szereted);
@@ -166,9 +166,13 @@ var fozelek=new function() {
         setTimeout( start_stat, 60000 );
     }
 
+    // Elrejt, vagy megjelenít egy elemet
     var hide = function(mit){
-        //$('kutatas').update('');
-        $(mit).style="display:none";
+        var elem = $(mit);
+        var show = false;
+        if($j(elem).attr('style').match(/none/)) show = true;
+
+        $(mit).attr('style',show ? '' : 'display:none');
     }
 
 

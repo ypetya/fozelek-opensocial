@@ -18,17 +18,12 @@
 <Content type="html" view="profile">
 <![CDATA[
 <!-- == Profil oldal ================================= -->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js"></script>
-    <script type="text/javascript" src="http://gadget.virgosystems.hu/~ypetya/fozelek/fozelek.js"></script>
+
+    <link rel="stylesheet" href="http://gadget.virgosystems.hu/~ypetya/style/iwiwlite.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+    <script type="text/javascript" src="http://gadget.virgosystems.hu/~ypetya/jquery-1.3.1.min.js"></script>
     <script type="text/javascript">
-    <!-- loader -->
-        gadgets.util.registerOnLoadHandler(fozelek.init);
+        var $j = jQuery.noConflict();
     </script>
-]]>
-</Content>
-<Content type="html" view="canvas">
-<![CDATA[
-<!-- == Fő nézet ===================================== -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js"></script>
     <script type="text/javascript" src="http://gadget.virgosystems.hu/~ypetya/fozelek/fozelek.js"></script>
     <script type="text/javascript">
@@ -36,9 +31,9 @@
         gadgets.util.registerOnLoadHandler(fozelek.init);
     </script>
 
-    <div id="az_igazsag" style="font-family:verdana;font-weight:bold;"> :) </div>
+    <div id="az_igazsag" style="display:none"> :) </div>
 
-    <form id="kutatas">
+    <form id="kutatas" style="display:none">
         <p>
             Finomfőzelék?
             <input id="igen" type="button" value="igen" style="float:left"/>
@@ -48,13 +43,45 @@
 
 
     <br/>
-    <div>
-        <span id="statisztika"></span>
-    </div>
+    <div id="statisztika" style="display:none"></div>
     <br/>
-    <div id="log" style="font-family:system;font-size:8px;"></div>
+    <div id="log" style="display:none"></div>
 ]]>
+</Content>
+<Content type="html" view="canvas">
+<![CDATA[
+<!-- == Fő nézet ===================================== -->
 
+    <link rel="stylesheet" href="http://gadget.virgosystems.hu/~ypetya/style/iwiwlite.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+    <script type="text/javascript" src="http://gadget.virgosystems.hu/~ypetya/jquery-1.3.1.min.js"></script>
+    <script type="text/javascript">
+        var $j = jQuery.noConflict();
+    </script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js"></script>
+    
+    <script type="text/javascript" src="http://gadget.virgosystems.hu/~ypetya/fozelek/fozelek.js"></script>
+    <script type="text/javascript">
+    <!-- loader -->
+        gadgets.util.registerOnLoadHandler(fozelek.init);
+    </script>
+
+    <div id="az_igazsag" style="display:none"> :) </div>
+
+    <form id="kutatas" style="display:none">
+        <p>
+            Finomfőzelék?
+            <input id="igen" type="button" value="igen" style="float:left"/>
+            <input id="nem" type="button" value="nem" style="float:left"/>
+        </p>
+    </form>
+
+
+    <br/>
+    <div id="statisztika" style="display:none"></div>
+    <br/>
+    <div id="log" style="display:none"></div>
+
+]]>
 </Content> 
 </Module>
 
