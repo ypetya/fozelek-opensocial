@@ -73,7 +73,7 @@
 
                 return false;
         }
-*/
+
         var load = function(data) {
             alert('megjött!');
             var viewer = data.get('viewer').getData();
@@ -89,7 +89,7 @@
             req.add(req.newFetchPersonAppDataRequest(viewer, 'fozelek'), 'viewerData');
             req.add(req.newFetchPersonAppDataRequest(owner, 'fozelek'), 'ownerData');
             
-            /* ezt a háttérben kéne kigyűjteni :)
+            / * ezt a háttérben kéne kigyűjteni :)
             var friends_params = {};
             friends_params[opensocial.DataRequest.PeopleRequestFields.MAX] = 20;
             //név szerint rendezve
@@ -101,20 +101,20 @@
             req.add(req.newFetchPeopleRequest(ownerFriends, friends_params), 'ownerFriends');
             req.add(req.newFetchPersonAppDataRequest(ownerFriends, 'fozelek', friends_params), 'ownerFriendsData');
 
-            */
+            * /
 
 
             alert('oninit');
             req.send(load);
         }
-
+*/
 
         return {
             init: function() {
                 alert('init');
                 $('igen').observe('click', igen);
                 $('nem').observe('click', nem);
-                requestData();
+                //requestData();
             }
         }
     }();
