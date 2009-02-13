@@ -212,4 +212,3 @@ var fozelek=new function() {
     }
 }();
 
-gadgets.util.registerOnLoadHandler(fozelek.init);
