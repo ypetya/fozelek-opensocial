@@ -120,9 +120,6 @@
             }
 
         return {
-            info: function( msg ) {
-                this.info(msg);
-            }
             init: function() {
                info('init');
                $('igen').observe('click', igen);
@@ -131,7 +128,6 @@
             }
         }
     }();
-    fozelek.info('Meghívja a fozelek.init-et');
     gadgets.util.registerOnLoadHandler(fozelek.init);
 </script>
 
