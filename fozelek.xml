@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+    <ModulePrefs 
+        title="Feltétlenül főtt étel" 
+        author="Kiss Péter" 
+        author_email="ypetya@gmail.com"
+        author_link="http://gadget.virgo.hu/~ypetya/author.html"
+        author_photo="http://gadget.virgo.hu/~ypetya/author_photo.jpg"
+        screenshot="http://gadget.virgo.hu/~ypetya/fozelek/screenshot.jpg"
+        thumbnail="http://gadget.virgo.hu/~ypetya/fozelek/thumbnail.jpg"
+        title_url="http://gadget.virgo.hu/~ypetya/fozelek/title.html"
+        decription="Ez az alkalmazás a finomfőzelék c. paradoxon feloldására született. A főzelék, amely állítólag nevével ellentétben soha nem finom! Segítsünk hát neki!"
+        >
+        <Require feature="opensocial-0.8"/>
+        <Require feature="settitle"/>
+        <Require feature="views"/> 
+    </ModulePrefs>
+<Content type="html" view="profile">
+<![CDATA[
+<!-- == Profil oldal ================================= -->
+<div>Főzelék a profiloldalon. szeretem / nem szeretem. Státusz és csali szöveg</div>
+]]>
+</Content>
+<Content type="html" view="canvas">
+
+<![CDATA[
+<!-- == Fő nézet ===================================== -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js"></script>
+<script type="text/javascript">
+    var fozelek=new function() {
+        // Konstantsok
+        var DEBUG = true;
+        var CRLF = '<br/>';
+        var SZERETED = 'Feltétlen főtt étel!';
+        var SZERETI = 'Szereti a főzeléket!';
+        var NEM_SZERETED ='Nem szeretem a főzeléket!';
+        var NEM_SZERETI = 'Nem szereti a főzeléket!';
+
+        var ennyibol = 0;
+        var ennyien = 0;
+
+        var logActivity = function( txt ) {
+            //történés rögzítése
+            var params = {};
+            params[opensocial.Activity.Field.TITLE] = txt;
+            var activity = opensocial.newActivity(params);
+            opensocial.requestCreateActivity(activity,opensocial.CreateActivityPriority.HIGH);
+            log('logActivity',txt);
+        }
+
+        //beupdateljük az igazságot, ez majd segít eldönteni a finomfőzelékről...
+        var lockDown = function(event,text) {
+          Event.stop(event);
+          show( text );
+          logActivity( text );
+        }
+
+        var adat = false;
+
+        var sendData = function( varname, data ) {
+            var req = opensocial.newDataRequest();
+            adat = '{szereti:'+data+'}';
+            req.add(req.newUpdatePersonAppDataRequest("VIEWER", varname, adat));
+            req.send();
+            info('sendData');
+            log('Varname', varname);
+            log('Data',adat['szereti']);            
+        }
+
+        var igen = function(event) {
+            log('Gombnyomás','igen');
+            sendData( 'fozelek', 'igen' );
+            lockDown(event, SZERETED);
+        }
+
+        var nem = function(event) {
+            log('Gombnyomás','nem');
+            sendData( 'fozelek', 'nem' );
+            lockDown(event, NEM_SZERETED);
+        }
+
+        var extractFozelekData = function(data, person) {
+            log('ExtractedData[fozelek]',data['fozelek']);
+            log('ExtractedData['+person.getId()+']', data[person.getId()]); 
+            if(person != null && data[person.getId()]) {
+                log('ExtractedPerson',person.getId());
+                log('ExtractedData',data['szereti']);
+
+                var fozi = gadgets.json.parse(gadgets.util.unescapeString(data[person.getId()]['fozelek']));
+                log('fozi',fozi['szereti']);
+                if( fozi['szereti'] == "igen" ){
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        var show = function(text) {
+            info('show',text);
+            $('az_igazsag').update( text );
+        }
+
+        
+        var idegen_oldal = function (viewer) {
+            return !viewer.isOwner();
+        }
+
+        var valasz = function(idegen,igazsag) {
+            if(igazsag){
+                show(idegen ? SZERETI : SZERETED);
+            }
+            else {
+                show(idegen ? NEM_SZERETI : NEM_SZERETED);
+            }
+        }
+
+        var show_stat = function() {
+            log( 'Ennyiből', ennyibol);
+            log( 'Ennyien', ennyien);
+            var st = $('statisztika');
+            if(ennyien == 0){
+                st.update( 'Még senki sem szereti a főzeléket! Milyen dolog ez?' );
+            }
+            else {
+                if( ennyibol == 0 ) return;
+                if( ennyibol == ennyien ){
+                    st.update( 'A főzeléket mindenki szereti!');
+                    return;
+                }
+                st.update( '(' + ((ennyien / ennyibol) * 100).toString() + '%)');
+            }
+        }
+
+        var load_stat = function(data) {
+            info('Megjött a válasz a statisztika lekérdezésre');
+
+            var friends = data.get('ownerFriends').getData();
+            var friendsData = data.get('ownerFriendsData').getData();
+
+            ennyibol = friends.size();
+            
+            friends.each(function(person) {
+                if(extractFozelekData(friendsData,person)) ennyien += 1;
+            });
+
+            show_stat();
+        }
+        
+        var start_stat = function() {
+            ennyibol = 1;
+            ennyien = 0;
+            requestData( 'stat', load_stat );
+            setTimeout( start_stat, 60000 );
+        }
+
+        var load = function(data) {
+            info('Megjött a válasz!');
+            var viewer = data.get('viewer').getData();
+            var owner = data.get('owner').getData();
+
+            log('viewer', viewer.getId());
+            var szereted = extractFozelekData(data,viewer);
+
+            var szereti = szereted;
+            if(idegen_oldal(viewer)){
+                szereti = extractFozelekData(data,owner);
+
+                log('owner', owner.getId());
+                log('data', szereti );
+            }
+            
+            //itt jön a logika, => ha nem a sajátomat nézem, akkor
+            if(idegen_oldal(viewer)) {
+                valasz(true,szereti);
+                hide_choice();
+            }
+            else {
+                valasz(false,szereted);
+            }
+
+            start_stat();
+        }
+
+        var hide_choice = function(){
+            $('kutatas').update('');
+        }
+
+        /* a method-dal lehet megadni, hogy melyik lekérést hajtsuk végre */
+        var requestData = function( method, callbackfunction ){
+            var viewer = opensocial.newIdSpec({ "userId" : "VIEWER" });
+            var owner = opensocial.newIdSpec({ "userId" : "OWNER" });
+            var req = opensocial.newDataRequest();
+
+            req.add(req.newFetchPersonRequest(opensocial.IdSpec.PersonId.VIEWER), 'viewer');
+            req.add(req.newFetchPersonRequest(opensocial.IdSpec.PersonId.OWNER), 'owner');
+            
+
+            switch(method) {
+                case 'init' :
+                    req.add(req.newFetchPersonAppDataRequest(viewer, 'fozelek'), 'viewerData');
+                    req.add(req.newFetchPersonAppDataRequest(owner, 'fozelek'), 'ownerData');
+                    break;
+                case 'stat' :
+                    /* ezt a háttérben kéne kigyűjteni :) */
+                    var friends_params = {};
+                    friends_params[opensocial.DataRequest.PeopleRequestFields.MAX] = 20;
+                    //név szerint rendezve
+                    friends_params[opensocial.DataRequest.PeopleRequestFields.SORT_ORDER] = opensocial.DataRequest.SortOrder.NAME;
+                    //csak azokat, akiknek telepítve van az alkalmazás
+                    friends_params[opensocial.DataRequest.PeopleRequestFields.FILTER] =	opensocial.DataRequest.FilterType.HAS_APP;
+                    var ownerFriends = opensocial.newIdSpec({ "userId" : "OWNER", "groupId" : "FRIENDS" });
+                    //ismerősök, es a hozzájuk tartozó alkalmazás-adatok
+                    req.add(req.newFetchPeopleRequest(ownerFriends, friends_params), 'ownerFriends');
+                    req.add(req.newFetchPersonAppDataRequest(ownerFriends, 'fozelek', friends_params), 'ownerFriendsData');
+                    break;
+                default:
+                    break;
+            }
+
+
+            log('OnInit: Elküldöm a requestData-kérést',method);
+            req.send(callbackfunction);
+        }
+
+        var log = function( variable, val) {
+                if(!DEBUG) return;
+                var value_part = '';
+                if( val != 'undefined' ) value_part = ' : "' + val + '"';
+                $('log').innerHTML = $('log').innerHTML + variable + value_part + CRLF;
+            }
+
+        var info = function( msg ) {
+                log( msg, 'undefined');
+            }
+
+        return {
+            init: function() {
+               info('init.');
+               $('igen').observe('click', igen);
+               $('nem').observe('click', nem);
+               requestData('init',load);
+            }
+        }
+    }();
+
+    gadgets.util.registerOnLoadHandler(fozelek.init);
+</script>
+
+
+<div id="az_igazsag" style="font-family:verdana;font-weight:bold;"> :) </div>
+
+<form id="kutatas">
+    <p>
+        Finomfőzelék?
+        <input id="igen" type="button" value="igen" style="float:left"/>
+        <input id="nem" type="button" value="nem" style="float:left"/>
+    </p>
+</form>
+
+
+<br/>
+<div>Összesítve:
+    <span id="statisztika"></span>
+</div>
+<br/>
+<div id="log"></div>
+]]>
+
+</Content> 
+</Module>
+
