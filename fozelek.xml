@@ -35,7 +35,7 @@
 
     <div id="error" style="display:none"></div>
 
-    <div id="az_igazsag" style="display:none"> :) </div>
+    <h2 id="az_igazsag" style="display:none"> :) </h2>
 
     <form id="megsem" style="display:none">
         <p>
@@ -75,11 +75,11 @@
 
     <div id="error" style="display:none"></div>
     
-    <div id="az_igazsag" style="display:none"> :) </div>
+    <h2 id="az_igazsag" style="display:none"> :) </h2>
 
     <form id="megsem" style="display:none">
         <p>
-            <input id="megsem" type="button" value="meggondoltam"/>
+            <a id="megsem">meggondoltam</a>
         </p>
     </form>
 

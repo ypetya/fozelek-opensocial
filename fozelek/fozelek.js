@@ -1,6 +1,10 @@
+//{{{ Author
+// Kiss Péter - ypetya@gmail.com - 2009
+//}}}
+
 var fozelek=new function() {
 //{{{ Konstansok
-    var DEBUG = true;
+    var DEBUG = false;
     var CRLF = '<br/>';
     var SZERETED = 'Feltétlen főtt étel!';
     var SZERETI = 'Szereti a főzeléket!';
@@ -207,6 +211,7 @@ var fozelek=new function() {
         }
         else {
             valasz(false,szereted);
+
             if(is_firstTime(vData,viewer)){
                 display('kutatas');
             }
@@ -214,8 +219,11 @@ var fozelek=new function() {
                 display('megsem');
             }
         }
-        
-        start_stat();
+
+        // csak a főoldalon számolunk statisztikát. ettől érdekes! :)
+        if( current_view == 'canvas' ){ 
+            start_stat();
+        }
     }
 //}}}
 //{{{ Statisztika poller
