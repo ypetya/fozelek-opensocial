@@ -55,8 +55,11 @@
           logActivity( text );
         }
 
-        var sendData = function( varname, adat ) {
+        var adat = false;
+
+        var sendData = function( varname, data ) {
             var req = opensocial.newDataRequest();
+            adat = {szereti:data};
             req.add(req.newUpdatePersonAppDataRequest("VIEWER", varname, adat));
             req.send();
             info('sendData');
@@ -66,13 +69,13 @@
 
         var igen = function(event) {
             log('Gombnyomás','igen');
-            sendData( 'fozelek', {szereti:igen} );
+            sendData( 'fozelek', 'igen' );
             lockDown(event, SZERETED);
         }
 
         var nem = function(event) {
             log('Gombnyomás','nem');
-            sendData( 'fozelek', {szereti:nem} );
+            sendData( 'fozelek', 'nem' );
             lockDown(event, NEM_SZERETED);
         }
 
