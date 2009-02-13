@@ -112,8 +112,8 @@
         return {
             init: function() {
                 alert('init');
-                $('igen').observe('click', igen);
-                $('nem').observe('click', nem);
+//               $('igen').observe('click', igen);
+//               $('nem').observe('click', nem);
                 //requestData();
             }
         }
