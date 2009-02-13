@@ -32,7 +32,6 @@
         gadgets.window.adjustHeight(300); 
         gadgets.util.registerOnLoadHandler(fozelek.init);
         var navToCanvas(){
-            gadgets.views.requestNavigateTo(gadgets.views.getSupportedViews()["canvas"]);
         }
     </script>
 
@@ -41,7 +40,7 @@
     <ul class="sidebar">
         <li class="zold">
             <label id="az_igazsag" style="display:none"> :) </label>
-            <a onclick="javascript:navToCanvas();">úgy gondolom</a>
+            <a onclick='javascript: gadgets.views.requestNavigateTo(gadgets.views.getSupportedViews()["canvas"]);'>úgy gondolom</a>
         </li>
     </ul>
     
