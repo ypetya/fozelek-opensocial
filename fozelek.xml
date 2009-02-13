@@ -80,6 +80,7 @@
         }
 
         var extractFozelekData = function(data, person) {
+            debugger
             log('xperson',person.getId());
             log('xpersdat1', data['fozelek']);
             log('xpersdat2',data[person.getId()]);
