@@ -29,17 +29,6 @@
     var fozelek=new function() {
         var CRLF = '<br/>';
 
-        var my_log = function( variable, val) {
-            alert(variable);
-            var value_part = '';
-            if( val != 'undefined' ) value_part = ' : "' + val + '"';
-            $('log').innerHTML = $('log').innerHTML + variable + value_part + CRLF;
-        }
-
-        var my_info = function( msg ) {
-            alert( msg );
-            my_log( msg, 'undefined');
-        }
 /*
         var logActivity = function( txt ) {
             //történés rögzítése
@@ -84,7 +73,7 @@
         }
 */
         var load = function(data) {
-            my_info('Megjött a válasz!');
+            info('Megjött a válasz!');
             var viewer = data.get('viewer').getData();
             var owner = data.get('owner').getData();
         }
@@ -113,20 +102,32 @@
             */
 
 
-            my_info('OnInit: Elküldöm az első requestData-kérést');
+            info('OnInit: Elküldöm az első requestData-kérést');
             req.send(load);
         }
 
         return {
             init: function() {
-               my_info('init');
+               info('init');
                $('igen').observe('click', igen);
                $('nem').observe('click', nem);
                requestData();
             }
+
+            log: function( variable, val) {
+                alert(variable);
+                var value_part = '';
+                if( val != 'undefined' ) value_part = ' : "' + val + '"';
+                $('log').innerHTML = $('log').innerHTML + variable + value_part + CRLF;
+            }
+
+            info: function( msg ) {
+                alert( msg );
+                log( msg, 'undefined');
+            }
         }
     }();
-    fozelek.my_info('Meghívja a fozelek.init-et');
+    fozelek.info('Meghívja a fozelek.init-et');
     gadgets.util.registerOnLoadHandler(fozelek.init);
 </script>
 
