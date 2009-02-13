@@ -27,11 +27,11 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js"></script>
 <script type="text/javascript">
     var fozelek=new function() {
-
+/*
         var log = function( var, val) {
             $('log').update( $('log').value + var + ' : ' + val + '<br/>' );
         }
-/*
+
         var logActivity = function( txt ) {
             //történés rögzítése
             var params = {};
