@@ -31,6 +31,7 @@ var fozelek=new function() {
       show( text );
       logActivity( text );
       hide('kutatas');
+      display('megsem');
     }
 
     // Ez az adat a felposztoláshoz kell
@@ -56,6 +57,12 @@ var fozelek=new function() {
         log('Gombnyomás','nem');
         sendData( 'fozelek', 'nem' );
         lockDown(event, NEM_SZERETED);
+    }
+    var megsem = function(event) {
+        Event.stop(event);
+        log('Meggondolás', 'kutyafáját!');
+        hide('megsem');
+        display('kutatas');
     }
 //}}}
 //{{{ Adat lekérdezés
@@ -177,15 +184,18 @@ var fozelek=new function() {
     var load = function(data) {
         if(is_error(data)) return;
         info('Megjött a válasz!');
+
         var viewer = data.get('viewer').getData();
+        var vData = data.get('viewerData').getData();
         var owner = data.get('owner').getData();
+        var oData = data.get('ownerData').getData();
 
         log('viewer', viewer.getId());
-        var szereted = extractFozelekData(data.get('viewerData').getData(),viewer);
+        var szereted = extractFozelekData(vData,viewer);
 
         var szereti = szereted;
         if(idegen_oldal(viewer)){
-            szereti = extractFozelekData(data.get('ownerData').getData(),owner);
+            szereti = extractFozelekData(oData,owner);
 
             log('owner', owner.getId());
             log('data', szereti );
@@ -197,7 +207,12 @@ var fozelek=new function() {
         }
         else {
             valasz(false,szereted);
-            display('kutatas');
+            if(is_firstTime(vData,viewer)){
+                display('kutatas');
+            }
+            else{
+                display('megsem');
+            }
         }
         
         start_stat();
@@ -306,6 +321,7 @@ var fozelek=new function() {
            info('init.');
            $('igen').observe('click', igen);
            $('nem').observe('click', nem);
+           $('megsem').observe('click',megsem);
            requestData('init',load);
         }
     }

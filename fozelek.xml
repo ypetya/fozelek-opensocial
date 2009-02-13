@@ -37,6 +37,12 @@
 
     <div id="az_igazsag" style="display:none"> :) </div>
 
+    <form id="megsem" style="display:none">
+        <p>
+            <input id="megsem" type="button" value="meggondoltam"/>
+        </p>
+    </form>
+
     <form id="kutatas" style="display:none">
         <p>
             Finomfőzelék?
@@ -61,7 +67,6 @@
         var $j = jQuery.noConflict();
     </script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js"></script>
-    
     <script type="text/javascript" src="http://gadget.virgosystems.hu/~ypetya/fozelek/fozelek.js"></script>
     <script type="text/javascript">
     <!-- loader -->
@@ -71,6 +76,12 @@
     <div id="error" style="display:none"></div>
     
     <div id="az_igazsag" style="display:none"> :) </div>
+
+    <form id="megsem" style="display:none">
+        <p>
+            <input id="megsem" type="button" value="meggondoltam"/>
+        </p>
+    </form>
 
     <form id="kutatas" style="display:none">
         <p>
