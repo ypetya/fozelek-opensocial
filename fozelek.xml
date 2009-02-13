@@ -11,6 +11,7 @@
         title_url="http://gadget.virgo.hu/~ypetya/fozelek/title.html"
         decription="Ez az alkalmazás a finomfőzelék c. paradoxon feloldására született. A főzelék, amely állítólag nevével ellentétben soha nem finom! Segítsünk hát neki!"
         >
+        <Require feature="opensocial-0.8"/>
         <Require feature="settitle"/>
         <Require feature="views"/> 
     </ModulePrefs>
@@ -114,12 +115,12 @@
                 if( val != 'undefined' ) value_part = ' : "' + val + '"';
                 $('log').innerHTML = $('log').innerHTML + variable + value_part + CRLF;
             }
-
+*/
             info: function( msg ) {
                 alert( msg );
 //                log( msg, 'undefined');
             }
-*/
+
             init: function() {
                alert('init');
   //             info('init');
