@@ -107,12 +107,6 @@
         }
 
         return {
-            init: function() {
-               info('init');
-               $('igen').observe('click', igen);
-               $('nem').observe('click', nem);
-               requestData();
-            }
 
             log: function( variable, val) {
                 alert(variable);
@@ -125,9 +119,19 @@
                 alert( msg );
                 log( msg, 'undefined');
             }
+
+            init: function() {
+               alert('init');
+               info('init');
+               $('igen').observe('click', igen);
+               $('nem').observe('click', nem);
+               requestData();
+            }
         }
     }();
+    alert('1');
     fozelek.info('Meghívja a fozelek.init-et');
+    alert('2');
     gadgets.util.registerOnLoadHandler(fozelek.init);
 </script>
 
