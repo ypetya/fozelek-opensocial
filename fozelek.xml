@@ -126,7 +126,7 @@
             var friends = data.get('friends').getData();
             var friendsData = data.get('data').getData();
 
-            ennyibol = friends.length;
+            ennyibol = friends.size();
             for(var i=0; i<ennyibol; i++){
                 if(extractFozelekData(friendsData,friends[i])) ennyien += 1;
             }
