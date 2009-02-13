@@ -120,8 +120,9 @@
             }
 
         return {
-/*
-*/
+            info: function( msg ) {
+                this.info(msg);
+            }
             init: function() {
                info('init');
                $('igen').observe('click', igen);
