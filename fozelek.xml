@@ -130,9 +130,7 @@
             }
         }
     }();
-    alert('1');
-//    fozelek.info('Meghívja a fozelek.init-et');
-  //  alert('2');
+    fozelek.info('Meghívja a fozelek.init-et');
     gadgets.util.registerOnLoadHandler(fozelek.init);
 </script>
 
