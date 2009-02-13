@@ -64,13 +64,27 @@ var fozelek=new function() {
             log('ExtractedPerson',person.getId());
             log('ExtractedData',data[person.getId()]['fozelek']);
             var fozi = gadgets.json.parse(gadgets.util.unescapeString(data[person.getId()]['fozelek']));
-            log('fozi',fozi);
-            if( fozi['szereti'] == "igen" ){
+            if( fozi['szereti'] == 'igen' ){
                 return true;
             }
         }
 
         return false;
+    }
+
+    // Ha még nem válaszolt akkor true
+    var is_firstTime = function(data, person){
+        if(person != null && data[person.getId()]) {
+            log('ExtractedPerson',person.getId());
+            log('ExtractedData',data[person.getId()]['fozelek']);
+            var fozi = gadgets.json.parse(gadgets.util.unescapeString(data[person.getId()]['fozelek']));
+            if( fozi['szereti'] == 'igen' || fozi['szereti'] == 'nem'){
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
     }
 //}}}
 //{{{ Adatok kiiratása
@@ -180,12 +194,12 @@ var fozelek=new function() {
         //itt jön a logika, => ha nem a sajátomat nézem, akkor
         if(idegen_oldal(viewer)) {
             valasz(true,szereti);
-            display('kutatas');
         }
         else {
             valasz(false,szereted);
+            display('kutatas');
         }
-
+        
         start_stat();
     }
 //}}}
