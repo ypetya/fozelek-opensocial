@@ -37,6 +37,7 @@
         }
 
         var info = function( message ) {
+            alert( message);
             log( message, 'undefined');
         }
 
@@ -47,7 +48,7 @@
             var activity = opensocial.newActivity(params);
             opensocial.requestCreateActivity(activity,opensocial.CreateActivityPriority.HIGH);
         }
-
+/*
         //beupdateljük az igazságot, ez majd segít eldönteni a finomfőzelékről...
         var lockDown = function(event,text) {
           Event.stop(event);
@@ -81,7 +82,7 @@
 
                 return false;
         }
-
+*/
         var load = function(data) {
             info('Megjött a válasz!');
             var viewer = data.get('viewer').getData();
