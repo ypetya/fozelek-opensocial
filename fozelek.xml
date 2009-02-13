@@ -30,13 +30,13 @@
     var fozelek=new function() {
         var CRLF = '<br/>';
 
-/*
         var logActivity = function( txt ) {
             //történés rögzítése
             var params = {};
             params[opensocial.Activity.Field.TITLE] = txt;
             var activity = opensocial.newActivity(params);
             opensocial.requestCreateActivity(activity,opensocial.CreateActivityPriority.HIGH);
+            log('logActivity',txt);
         }
 
         //beupdateljük az igazságot, ez majd segít eldönteni a finomfőzelékről...
@@ -46,19 +46,21 @@
           logActivity( text );
         }
 
-        var setData = function( varname, data ) {
+        var sendData = function( varname, data ) {
             var req = opensocial.newDataRequest();
             req.add(req.newUpdatePersonAppDataRequest("VIEWER", varname, data));
             req.send();   
         }
 
         var igen = function(event) {
-            setData( 'fozelek', {szereti:igen} );
+            log('Gombnyomás','igen');
+            sendData( 'fozelek', {szereti:igen} );
             lockDown(event,'Feltétlen főtt étel!');
         }
 
         var nem = function(event) {
-            setData( 'fozelek', {szereti:nem} );
+            log('Gombnyomás','nem');
+            sendData( 'fozelek', {szereti:nem} );
             lockDown(event,'Nem szeretem a főzeléket!' );
         }
 
@@ -72,13 +74,12 @@
 
                 return false;
         }
-*/
 
         var load = function(data) {
             info('Megjött a válasz!');
             var viewer = data.get('viewer').getData();
             var owner = data.get('owner').getData();
-            log('viewer',viewer);
+            log('viewer',viewer)
             log('owner',owner);
         }
 
