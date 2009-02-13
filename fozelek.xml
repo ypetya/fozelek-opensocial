@@ -46,6 +46,12 @@
           logActivity( text );
         }
 
+/*        var getData = function( varname ) {
+            var req = opensocial.newDataRequest();
+            req.add(req.newUpdatePersonAppDataRequest("VIEWER", 'workHours', {hours:hours}));
+            req.send();
+        }*/
+
         var sendData = function( varname, data ) {
             var req = opensocial.newDataRequest();
             req.add(req.newUpdatePersonAppDataRequest("VIEWER", varname, data));
@@ -79,11 +85,10 @@
             info('Megjött a válasz!');
             var viewer = data.get('viewer').getData();
             var owner = data.get('owner').getData();
-            var fozi = data.get('fozelek').getData();
 
-            log('viewer',viewer)
-            log('owner',owner);
-            log('fozelek',fozi);
+            log('viewer', viewer.getId());
+            log('data', extractFozelekData(data,viewer));
+            log('owner',owner.getId());
         }
 
         /* a method-dal lehet megadni, hogy melyik lekérést hajtsuk végre */
