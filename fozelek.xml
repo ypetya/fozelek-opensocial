@@ -29,7 +29,7 @@
     <script type="text/javascript" src="http://gadget.virgosystems.hu/~ypetya/fozelek/fozelek.js"></script>
     <script type="text/javascript">
     <!-- loader -->
-        gadgets.window.adjustHeight(50); 
+        gadgets.window.adjustHeight(60); 
         gadgets.util.registerOnLoadHandler(fozelek.init);
     </script>
 
