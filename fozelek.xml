@@ -79,8 +79,11 @@
             info('Megjött a válasz!');
             var viewer = data.get('viewer').getData();
             var owner = data.get('owner').getData();
+            var fozi = data.get('fozelek').getData();
+
             log('viewer',viewer)
             log('owner',owner);
+            log('fozelek',fozi);
         }
 
         /* a method-dal lehet megadni, hogy melyik lekérést hajtsuk végre */
