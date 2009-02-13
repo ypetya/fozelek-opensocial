@@ -108,7 +108,7 @@
             log( 'Ennyien', ennyien);
             var st = $('statisztika');
             if(ennyien == 0){
-                st.update( 'Senki nem szereti a főzeléket!' );
+                st.update( 'Senki sem szereti a főzeléket! Milyen dolog ez?' );
             }
             else {
                 if( ennyibol == 0 ) return;
