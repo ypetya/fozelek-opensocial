@@ -30,6 +30,7 @@
         var CRLF = '<br/>';
 
         var log = function( variable, val) {
+            alert(variable);
             var value_part = '';
             if( val != 'undefined' ) value_part = ' : "' + val + '"';
             $('log').innerHTML = $('log').innerHTML + variable + value_part + CRLF;
