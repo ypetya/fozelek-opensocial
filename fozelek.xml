@@ -26,6 +26,7 @@
 <!-- == Fő nézet ===================================== -->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js"></script>
 <script type="text/javascript">
+    alert('script test');
     var fozelek=new function() {
 
         var log = function( var, val) {
