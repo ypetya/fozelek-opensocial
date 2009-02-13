@@ -80,7 +80,7 @@
         }
 
         var extractFozelekData = function(data, person) {
-            log('ExtractedData[szereti]',data['szereti']);
+            log('ExtractedData.szereti',data.szereti);
             log('ExtractedData['+person.getId()+']', data[person.getId()]); 
             if(person != null && data[person.getId()]) {
                 log('ExtractedPerson',person.getId());
