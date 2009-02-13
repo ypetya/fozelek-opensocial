@@ -9,12 +9,13 @@ var fozelek=new function() {
     var SZERETED = 'Feltétlen főtt étel!';
     var SZERETI = 'Szereti a főzeléket!';
     var NEM_SZERETED ='Nem szeretem a főzeléket!';
-    var NEM_SZERETI = 'Nem szereti a főzeléket!';
+    var NEM_SZERETI = ' nem szereti a főzeléket!';
     var REFRESHTIMEOUT = 60000;
 //}}}
 //{{{ Számlálók
     var ennyibol = 0;
     var ennyien = 0;
+    var ownerName = '';
 //}}}
 //{{{ Küldő rész
 
@@ -113,10 +114,10 @@ var fozelek=new function() {
 
     var valasz = function(idegen,igazsag) {
         if(igazsag){
-            show(idegen ? SZERETI : SZERETED);
+            show(idegen ? ownerName + SZERETI : SZERETED);
         }
         else {
-            show(idegen ? NEM_SZERETI : NEM_SZERETED);
+            show(idegen ? ownerName + NEM_SZERETI : NEM_SZERETED);
         }
     }
 
@@ -184,6 +185,7 @@ var fozelek=new function() {
         show_stat();
     }
 
+
     // Itt a saját adatainkat
     var load = function(data) {
         if(is_error(data)) return;
@@ -193,6 +195,7 @@ var fozelek=new function() {
         var vData = data.get('viewerData').getData();
         var owner = data.get('owner').getData();
         var oData = data.get('ownerData').getData();
+        ownerName = owner.getDisplayName();
 
         log('viewer', viewer.getId());
         var szereted = extractFozelekData(vData,viewer);
