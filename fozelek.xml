@@ -31,8 +31,12 @@
 
         var log = function( variable, val) {
             var value_part = '';
-            if( val != undefined ) value_part = ' : "' + val + '"';
+            if( val != 'undefined' ) value_part = ' : "' + val + '"';
             $('log').innerHTML = $('log').innerHTML + variable + value_part + CRLF;
+        }
+
+        var info = function( message ) {
+            log( message, 'undefined');
         }
 
         var logActivity = function( txt ) {
