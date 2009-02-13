@@ -31,7 +31,9 @@
         // Konstantsok
         var CRLF = '<br/>';
         var SZERETED = 'Feltétlen főtt étel!';
+        var SZERETI = 'Szereti a főzeléket!';
         var NEM_SZERETED ='Nem szeretem a főzeléket!';
+        var NEM_SZERETI = 'Nem szereti a főzeléket!';
 
         var logActivity = function( txt ) {
             //történés rögzítése
@@ -87,13 +89,12 @@
         var idegen_oldal = function (viewer) {
             return !viewer.isOwner();
         }
-
-        var valasz = function(igazsag) {
+        var valasz = function(idegen,igazsag) {
             if(igazsag){
-                show(SZERETED);
+                show(idegen ? SZERETI : SZERETED);
             }
             else {
-                show(NEM_SZERETED);
+                show(idegen ? NEM_SZERETI : NEM_SZERETED);
             }
         }
 
@@ -116,16 +117,16 @@
             
             //itt jön a logika, => ha nem a sajátomat nézem, akkor
             if(idegen_oldal(viewer)) {
-                valasz(szereti);
+                valasz(true,szereti);
                 hide_choice();
             }
             else {
-                valasz(szereted);
+                valasz(false,szereted);
             }
         }
 
         var hide_choice = function(){
-            $('kutatas').update(':)');
+            $('kutatas').update('');
         }
 
         /* a method-dal lehet megadni, hogy melyik lekérést hajtsuk végre */
