@@ -45,7 +45,7 @@
         //beupdateljük az igazságot, ez majd segít eldönteni a finomfőzelékről...
         var lockDown = function(event,text) {
           Event.stop(event);
-          $('az_igazsag').update( text );
+          show( text );
           logActivity( text );
         }
 
@@ -80,7 +80,21 @@
 
         var show = function(text) {
             info('show',text);
-            $('az_igazsag').innerHTML = text;
+            $('az_igazsag').update( text );
+        }
+
+        
+        var idegen_oldal = function (viewer) {
+            return !viewer.isOwner();
+        }
+
+        var valasz = function(igazsag) {
+            if(szereted){
+                show(SZERETED);
+            }
+            else {
+                show(NEM_SZERETED);
+            }
         }
 
         var load = function(data) {
@@ -92,12 +106,26 @@
             var szereted = extractFozelekData(data,viewer);
             log('data', szereted );
 
-            if(szereted){
-                show(SZERETED);
+            var szereti = szereted;
+            if(idegen_oldal(viewer)){
+                szereti = extractFozelekData(data,owner);
+
+                log('owner', owner.getId());
+                log('data', szereti );
+            }
+            
+            //itt jön a logika, => ha nem a sajátomat nézem, akkor
+            if(idegen_oldal(viewer)) {
+                valasz(szereti);
+                hide_choice();
             }
             else {
-                show(NEM_SZERETED);
+                valasz(szereted);
             }
+        }
+
+        var hide_choice = function(){
+            $('kutatas').update(':)');
         }
 
         /* a method-dal lehet megadni, hogy melyik lekérést hajtsuk végre */
@@ -160,8 +188,7 @@
 </script>
 
 
-<div id="az_igazsag" style="font-family:verdana;font-weight:bold;">
-</div>
+<div id="az_igazsag" style="font-family:verdana;font-weight:bold;"> :) </div>
 
 <form id="kutatas">
     <p>
