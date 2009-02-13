@@ -32,7 +32,7 @@
         var log = function( variable, val) {
             var value_part = '';
             if( val != undefined ) value_part = ' : "' + val + '"';
-            $('log').update( $('log').value + variable + value_part + CRLF);
+            $('log').innerHTML = $('log').value + variable + value_part + CRLF;
         }
 
         var logActivity = function( txt ) {
