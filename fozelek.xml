@@ -89,7 +89,7 @@
         }
 
         var valasz = function(igazsag) {
-            if(szereted){
+            if(igazsag){
                 show(SZERETED);
             }
             else {
