@@ -123,8 +123,7 @@
 /*
 */
             init: function() {
-               alert('init');
-  //             info('init');
+               info('init');
                $('igen').observe('click', igen);
                $('nem').observe('click', nem);
                requestData();
