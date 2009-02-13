@@ -227,6 +227,9 @@ var fozelek=new function() {
         if( current_view() == 'canvas' ){ 
             start_stat();
         }
+        else {
+            gadgets.window.setTitle(ownerName + ' és a főzelék');
+        }
     }
 //}}}
 //{{{ Statisztika poller
