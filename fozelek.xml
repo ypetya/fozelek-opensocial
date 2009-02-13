@@ -35,10 +35,16 @@
 
     <div id="error" style="display:none"></div>
 
+    <div class="admin_message">
+        <h4 id="az_igazsag" style="display:none"> :) </h4>
+        <p>
+            Én pedig
+            <a onclick='javascript: gadgets.views.requestNavigateTo(gadgets.views.getSupportedViews()["canvas"]);'>úgy gondolom</a>
+        </p>
+    </div>
     <ul class="sidebar">
         <li class="zold">
-            <label id="az_igazsag" style="display:none"> :) </label>
-            <a onclick='javascript: gadgets.views.requestNavigateTo(gadgets.views.getSupportedViews()["canvas"]);'>úgy gondolom</a>
+        titty
         </li>
     </ul>
     
