@@ -13,7 +13,8 @@
         >
         <Require feature="opensocial-0.8"/>
         <Require feature="settitle"/>
-        <Require feature="views"/> 
+        <Require feature="views"/>
+        <Require feature="dynamic-height"/> 
     </ModulePrefs>
 <Content type="html" view="profile">
 <![CDATA[
@@ -28,8 +29,11 @@
     <script type="text/javascript" src="http://gadget.virgosystems.hu/~ypetya/fozelek/fozelek.js"></script>
     <script type="text/javascript">
     <!-- loader -->
+        gadgets.window.adjustHeight(300); 
         gadgets.util.registerOnLoadHandler(fozelek.init);
     </script>
+
+    <div id="error" style="display:none"></div>
 
     <div id="az_igazsag" style="display:none"> :) </div>
 
@@ -40,7 +44,6 @@
             <input id="nem" type="button" value="nem" style="float:left"/>
         </p>
     </form>
-
 
     <br/>
     <div id="statisztika" style="display:none"></div>
@@ -65,6 +68,8 @@
         gadgets.util.registerOnLoadHandler(fozelek.init);
     </script>
 
+    <div id="error" style="display:none"></div>
+    
     <div id="az_igazsag" style="display:none"> :) </div>
 
     <form id="kutatas" style="display:none">

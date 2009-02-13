@@ -13,3 +13,7 @@
     font-family:system;
     font-size:9px;
 }
+
+#error{
+    font-color:red;
+}

@@ -1,5 +1,4 @@
 var fozelek=new function() {
-    
 //{{{ Konstansok
     var DEBUG = true;
     var CRLF = '<br/>';
@@ -7,13 +6,12 @@ var fozelek=new function() {
     var SZERETI = 'Szereti a főzeléket!';
     var NEM_SZERETED ='Nem szeretem a főzeléket!';
     var NEM_SZERETI = 'Nem szereti a főzeléket!';
+    var REFRESHTIMEOUT = 60000;
 //}}}
-
 //{{{ Számlálók
     var ennyibol = 0;
     var ennyien = 0;
 //}}}
-
 //{{{ Küldő rész
 
     // Activity küldés
@@ -60,7 +58,7 @@ var fozelek=new function() {
         lockDown(event, NEM_SZERETED);
     }
 //}}}
-
+//{{{ Adat lekérdezés
     var extractFozelekData = function(data, person) {
         if(person != null && data[person.getId()]) {
             log('ExtractedPerson',person.getId());
@@ -74,7 +72,7 @@ var fozelek=new function() {
 
         return false;
     }
-
+//}}}
 //{{{ Adatok kiiratása
 
     var show = function(text) {
@@ -114,8 +112,36 @@ var fozelek=new function() {
     }
 //}}}
 //{{{ Callback függvények
+    // Hibakezelés a wiki GYIK alapján http://dev.iwiw.hu/wiki/index.php/GYIK
+    var is_error = function(data){
+        if(data.hadError()) { //van hiba a válaszban?
+            var msg = [];
+            if(data.getErrorMessage()) {
+                //ha a kérés feldolgozásakor általános probléma merült fel
+                msg.push(data.getErrorMessage());
+            }
+            if(data.get('viewer').hadError()){
+                //ha az owner feldolgozásakor probléma volt
+                msg.push(item.getErrorMessage() + ' (' +item.getErrorCode() + ')');item
+            }
+            if(data.get('owner').hadError()){
+                //ha az owner feldolgozásakor probléma volt
+                msg.push(item.getErrorMessage() + ' (' +item.getErrorCode() + ')');item
+            }
+            if(data.get('ownerFriends').hadError()){
+                //ha az ownerFriends feldolgozásakor probléma volt
+                msg.push(item.getErrorMessage() + ' (' +item.getErrorCode() + ')');item
+            }
+            error(msg.join(CRLF));
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     // Itt az ismerősök adatait dolgozzuk fel
     var load_stat = function(data) {
+        if(is_error()) return;
         info('Megjött a válasz a statisztika lekérdezésre');
         // lekérdeztük a tulajdonos barátait..
         var friends = data.get('ownerFriends').getData();
@@ -130,8 +156,10 @@ var fozelek=new function() {
         // Statisztika kiszámítás és kijelzés
         show_stat();
     }
+
     // Itt a saját adatainkat
     var load = function(data) {
+        if(is_error()) return;
         info('Megjött a válasz!');
         var viewer = data.get('viewer').getData();
         var owner = data.get('owner').getData();
@@ -159,13 +187,15 @@ var fozelek=new function() {
         start_stat();
     }
 //}}}
+//{{{ Statisztika poller
     var start_stat = function() {
         ennyibol = 1;
         ennyien = 0;
         requestData( 'stat', load_stat );
-        setTimeout( start_stat, 60000 );
+        setTimeout( start_stat, REFRESHTIMEOUT );
     }
-
+//}}}
+//{{{ helper
     // Elrejt, vagy megjelenít egy elemet
     var hide = function(mit){
         var elem = $(mit);
@@ -175,7 +205,8 @@ var fozelek=new function() {
         $(mit).attr('style',show ? '' : 'display:none');
     }
 
-
+    var 
+//}}}
 //{{{ Lekérdezések
 
     /* a method-dal lehet megadni, hogy melyik lekérést hajtsuk végre */
@@ -227,6 +258,10 @@ var fozelek=new function() {
     var info = function( msg ) {
             log( msg, 'undefined');
         }
+    
+    var error = function( msg ) {
+        $('error').innerHTML = $('error').innerHTML + msg + CRLF;
+    }
 //}}}
 //{{{ Start
     return {
