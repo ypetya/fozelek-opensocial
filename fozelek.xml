@@ -59,7 +59,7 @@
 
         var sendData = function( varname, data ) {
             var req = opensocial.newDataRequest();
-            adat = '{szereti:'+data+'}';
+            adat = {szereti:data};
             req.add(req.newUpdatePersonAppDataRequest("VIEWER", varname, adat));
             req.send();
             info('sendData');
@@ -80,14 +80,14 @@
         }
 
         var extractFozelekData = function(data, person) {
-            log('ExtractedData[fozelek]',data['fozelek']);
+            log('ExtractedData[szereti]',data['szereti']);
             log('ExtractedData['+person.getId()+']', data[person.getId()]); 
             if(person != null && data[person.getId()]) {
                 log('ExtractedPerson',person.getId());
                 log('ExtractedData',data['szereti']);
 
                 var fozi = gadgets.json.parse(gadgets.util.unescapeString(data[person.getId()]['fozelek']));
-                log('fozi',fozi['szereti']);
+                log('fozi',fozi.szereti);
                 if( fozi['szereti'] == "igen" ){
                     return true;
                 }
