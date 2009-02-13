@@ -26,7 +26,7 @@
 <![CDATA[
 <!-- == Fő nézet ===================================== -->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js"></script>
-<script type="text/javascript" src="http://gadgets.virgosystems.hu/~ypetya/fozelek.js"></script>
+<script type="text/javascript" src="http://gadgets.virgosystems.hu/~ypetya/fozelek/fozelek.js"></script>
 <script type="text/javascript">
 <!-- loader -->
 gadgets.util.registerOnLoadHandler(fozelek.init);
