@@ -200,19 +200,18 @@ var fozelek=new function() {
 //{{{ helper
     // Elrejt, vagy megjelenít egy elemet
     var switch_hide = function(mit){
-        var elem = $(mit);
         var show = false;
-        if(is_hidden(elem)) show = true;
+        if(is_hidden(mit)) show = true;
 
-        $(mit).attr('style',show ? '' : 'display:none');
+        $j(mit).attr('style',show ? '' : 'display:none');
     }
     
     var hide = function(mit){
-        $(mit).attr('style','display:none');
+        $j(mit).attr('style','display:none');
     }
 
     var display = function(mit){
-        $(mit).attr('style','');
+        $j(mit).attr('style','');
     }
 
     var current_view = function(){
