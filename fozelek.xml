@@ -58,7 +58,10 @@
         var sendData = function( varname, data ) {
             var req = opensocial.newDataRequest();
             req.add(req.newUpdatePersonAppDataRequest("VIEWER", varname, data));
-            req.send();   
+            req.send();
+            info('sendData');
+            log('Varname', varname);
+            log('Data',data);            
         }
 
         var igen = function(event) {
