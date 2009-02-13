@@ -29,7 +29,7 @@
     <script type="text/javascript" src="http://gadget.virgosystems.hu/~ypetya/fozelek/fozelek.js"></script>
     <script type="text/javascript">
     <!-- loader -->
-        gadgets.window.adjustHeight(1300); 
+        gadgets.window.adjustHeight(50); 
         gadgets.util.registerOnLoadHandler(fozelek.init);
     </script>
 
@@ -37,17 +37,12 @@
 
     <div class="admin_message">
         <h4 id="az_igazsag" style="display:none"> :) </h4>
+        <img class="icon" src="http://static.iwiw.net/common/image/icon_home_mm_transp.png"/>
         <p>
             Én pedig
             <a onclick='javascript: gadgets.views.requestNavigateTo(gadgets.views.getSupportedViews()["canvas"]);'>úgy gondolom</a>
         </p>
     </div>
-    <ul class="sidebar">
-        <li class="zold">
-        titty
-        </li>
-    </ul>
-    
         
 
     <form id="megsem" style="display:none">
