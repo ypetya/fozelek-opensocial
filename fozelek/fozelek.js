@@ -272,12 +272,13 @@ var fozelek=new function() {
     var log = function( variable, val) {
             if(!DEBUG) return;
             var value_part = '';
-            if( val != 'undefined' ) value_part = ' : "' + val + '"';
+            if( val != '_undefined' ) value_part = ' : "' + val + '"';
             $('log').innerHTML = $('log').innerHTML + variable + value_part + CRLF;
+            display('log');
         }
 
     var info = function( msg ) {
-            log( msg, 'undefined');
+            log( msg, '_undefined');
         }
     
     var error = function( msg ) {
