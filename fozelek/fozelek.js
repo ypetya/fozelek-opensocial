@@ -205,7 +205,9 @@ var fozelek=new function() {
         $(mit).attr('style',show ? '' : 'display:none');
     }
 
-    var 
+    var current_view = function(){
+        return gadgets.views.getCurrentView().getName();
+    }
 //}}}
 //{{{ Lekérdezések
 
