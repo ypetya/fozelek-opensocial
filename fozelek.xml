@@ -83,10 +83,11 @@
             log('person',person);
             if(person != null && data[person.getId()]) {
                 var fozi = gadgets.json.parse(gadgets.util.unescapeString(data[person.getId()]['fozelek']));
-                        if( fozi['szereti'] == "igen" ){
-                            return true;
-                        }
+                log('fozi',fozi['szereti']);
+                if( fozi['szereti'] == "igen" ){
+                    return true;
                 }
+            }
 
                 return false;
         }
