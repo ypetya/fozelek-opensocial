@@ -80,14 +80,12 @@
         }
 
         var extractFozelekData = function(data, person) {
-            break
             log('xperson',person.getId());
             log('xpersdat1', data['fozelek']);
             log('xpersdat2',data[person.getId()]);
             if(person != null && data[person.getId()]) {
                 log('ExtractedPerson',person.getId());
                 log('ExtractedData',data[person.getId()]['fozelek']);
-                debugger;
                 var fozi = gadgets.json.parse(gadgets.util.unescapeString(data[person.getId()]['fozelek']));
                 log('fozi',fozi.szereti);
                 if( fozi['szereti'] == "igen" ){
