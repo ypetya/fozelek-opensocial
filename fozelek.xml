@@ -27,9 +27,12 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js"></script>
 <script type="text/javascript">
     var fozelek=new function() {
-/*
-        var log = function( var, val) {
-            $('log').update( $('log').value + var + ' : ' + val + '<br/>' );
+        var CRLF = '<br/>';
+
+        var log = function( variable, val) {
+            var value_part = '';
+            if( val != undefined ) value_part = ' : "' + val + '"';
+            $('log').update( $('log').value + variable + value_part + CRLF);
         }
 
         var logActivity = function( txt ) {
@@ -75,7 +78,7 @@
         }
 
         var load = function(data) {
-            alert('megjött!');
+            log('Megjött a válasz!');
             var viewer = data.get('viewer').getData();
             var owner = data.get('owner').getData();
         }
@@ -89,7 +92,7 @@
             req.add(req.newFetchPersonAppDataRequest(viewer, 'fozelek'), 'viewerData');
             req.add(req.newFetchPersonAppDataRequest(owner, 'fozelek'), 'ownerData');
             
-            / * ezt a háttérben kéne kigyűjteni :)
+            /* ezt a háttérben kéne kigyűjteni :)
             var friends_params = {};
             friends_params[opensocial.DataRequest.PeopleRequestFields.MAX] = 20;
             //név szerint rendezve
@@ -101,25 +104,24 @@
             req.add(req.newFetchPeopleRequest(ownerFriends, friends_params), 'ownerFriends');
             req.add(req.newFetchPersonAppDataRequest(ownerFriends, 'fozelek', friends_params), 'ownerFriendsData');
 
-            * /
+            */
 
 
-            alert('oninit');
+            log('OnInit: Elküldöm az első requestData-kérést');
             req.send(load);
         }
-*/
 
         return {
             init: function() {
-                alert('init');
-//               $('igen').observe('click', igen);
-//               $('nem').observe('click', nem);
-                //requestData();
+               log('init');
+               $('igen').observe('click', igen);
+               $('nem').observe('click', nem);
+               requestData();
             }
         }
     }();
 
-    alert('meghivja');
+    log('Meghívja a fozelek.init-et');
     gadgets.util.registerOnLoadHandler(fozelek.init);
 </script>
 
