@@ -29,10 +29,8 @@
     <script type="text/javascript" src="http://gadget.virgosystems.hu/~ypetya/fozelek/fozelek.js"></script>
     <script type="text/javascript">
     <!-- loader -->
-        gadgets.window.adjustHeight(300); 
+        gadgets.window.adjustHeight(1300); 
         gadgets.util.registerOnLoadHandler(fozelek.init);
-        var navToCanvas(){
-        }
     </script>
 
     <div id="error" style="display:none"></div>
@@ -40,6 +38,7 @@
     <ul class="sidebar">
         <li class="zold">
             <label id="az_igazsag" style="display:none"> :) </label>
+            <a onclick='javascript: gadgets.views.requestNavigateTo(gadgets.views.getSupportedViews()["canvas"]);'>úgy gondolom</a>
         </li>
     </ul>
     
