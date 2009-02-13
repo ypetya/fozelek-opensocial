@@ -117,7 +117,7 @@
             log( 'Ennyien', ennyien);
             var st = $('statisztika');
             if(ennyien == 0){
-                st.update( 'Még senki sem szereti a főzeléket! Milyen dolog ez?' );
+                st.update( 'Ismerőseid közűl még senki sem szereti a főzeléket! Milyen dolog ez?' );
             }
             else {
                 if( ennyibol == 0 ) return;
@@ -125,7 +125,7 @@
                     st.update( 'A főzeléket mindenki szereti!');
                     return;
                 }
-                st.update( '(' + ((ennyien / ennyibol) * 100).toString() + '%)');
+                st.update( 'Ismerőseid ' + ((ennyien / ennyibol) * 100).toString() + '%-a szereti a főzeléket!');
             }
         }
 
@@ -257,11 +257,11 @@
 
 
 <br/>
-<div>Összesítve:
+<div>
     <span id="statisztika"></span>
 </div>
 <br/>
-<div id="log"></div>
+<div id="log" style="font-family:system;font-size:8px;"></div>
 ]]>
 
 </Content> 
