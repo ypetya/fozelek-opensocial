@@ -221,7 +221,7 @@ var fozelek=new function() {
         }
 
         // csak a főoldalon számolunk statisztikát. ettől érdekes! :)
-        if( current_view == 'canvas' ){ 
+        if( current_view() == 'canvas' ){ 
             start_stat();
         }
     }
