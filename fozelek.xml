@@ -80,9 +80,10 @@
         }
 
         var extractFozelekData = function(data, person) {
+            log('ExtractedData[fozelek]',data['fozelek']); 
             if(person != null && data[person.getId()]) {
-                log('person',person.getId());
-                log('data',data['szereti']);
+                log('ExtractedPerson',person.getId());
+                log('ExtractedData',data['szereti']);
 
                 var fozi = gadgets.json.parse(gadgets.util.unescapeString(data[person.getId()]['fozelek']));
                 log('fozi',fozi['szereti']);
@@ -158,7 +159,6 @@
 
             log('viewer', viewer.getId());
             var szereted = extractFozelekData(data,viewer);
-            log('data', szereted );
 
             var szereti = szereted;
             if(idegen_oldal(viewer)){
