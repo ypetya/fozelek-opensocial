@@ -122,7 +122,7 @@
             else {
                 if( ennyibol == 0 ) return;
                 if( ennyibol == ennyien ){
-                    st.update( 'A főzeléket mindenki szereti!');
+                    st.update( 'A főzeléket minden ismerősöd szereti!');
                     return;
                 }
                 st.update( 'Ismerőseid ' + ((ennyien / ennyibol) * 100).toString() + '%-a szereti a főzeléket!');
