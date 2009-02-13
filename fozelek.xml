@@ -25,13 +25,11 @@
 <![CDATA[
 <!-- == Fő nézet ===================================== -->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js"></script>
-<script language="javascript">
-    
+<script type="text/javascript">
     var fozelek=new function() {
 
         var log = function( var, val) {
-            $('log').update($('log').value + var + ' : ' + val + '<br/>');
-
+            $('log').update( $('log').value + var + ' : ' + val + '<br/>' );
         }
 
         var logActivity = function( txt ) {
@@ -66,8 +64,8 @@
         }
 
         var extractFozelekData = function(data, person) {
-		if(data[person.getId()]) {
-			var fozi = gadgets.json.parse(gadgets.util.unescapeString(data[person.getId()]['fozelek']));
+            if(data[person.getId()]) {
+                var fozi = gadgets.json.parse(gadgets.util.unescapeString(data[person.getId()]['fozelek']));
                         if( fozi.szereti == "igen" ){
                             return true;
                         }
@@ -77,7 +75,6 @@
         }
 
         var load = function(data) {
-
             alert('megjött!');
             var viewer = data.get('viewer').getData();
             var owner = data.get('owner').getData();
@@ -92,8 +89,7 @@
             req.add(req.newFetchPersonAppDataRequest(viewer, 'fozelek'), 'viewerData');
             req.add(req.newFetchPersonAppDataRequest(owner, 'fozelek'), 'ownerData');
             
- /* ezt a háttérben kéne kigyűjteni :)
-
+            /* ezt a háttérben kéne kigyűjteni :)
             var friends_params = {};
             friends_params[opensocial.DataRequest.PeopleRequestFields.MAX] = 20;
             //név szerint rendezve
@@ -122,6 +118,8 @@
             }
         }
     }();
+
+    alert('meghivja');
     gadgets.util.registerOnLoadHandler(fozelek.init);
 </script>
 
