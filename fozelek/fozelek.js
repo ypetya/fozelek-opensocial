@@ -78,6 +78,7 @@ var fozelek=new function() {
     var show = function(text) {
         info('show',text);
         $('az_igazsag').update( text );
+        display('az_igazsag');
     }
 
     
@@ -109,6 +110,7 @@ var fozelek=new function() {
             }
             st.update( 'Ismerőseid ' + ((ennyien / ennyibol) * 100).toString() + '%-a szereti a főzeléket!');
         }
+        display('statisztika');
     }
 //}}}
 //{{{ Callback függvények
@@ -178,7 +180,7 @@ var fozelek=new function() {
         //itt jön a logika, => ha nem a sajátomat nézem, akkor
         if(idegen_oldal(viewer)) {
             valasz(true,szereti);
-            hide('kutatas');
+            display('kutatas');
         }
         else {
             valasz(false,szereted);
@@ -197,16 +199,28 @@ var fozelek=new function() {
 //}}}
 //{{{ helper
     // Elrejt, vagy megjelenít egy elemet
-    var hide = function(mit){
+    var switch_hide = function(mit){
         var elem = $(mit);
         var show = false;
-        if($j(elem).attr('style').match(/none/)) show = true;
+        if(is_hidden(elem)) show = true;
 
         $(mit).attr('style',show ? '' : 'display:none');
+    }
+    
+    var hide = function(mit){
+        $(mit).attr('style','display:none');
+    }
+
+    var display = function(mit){
+        $(mit).attr('style','');
     }
 
     var current_view = function(){
         return gadgets.views.getCurrentView().getName();
+    }
+
+    var is_hidden = function(elem){
+        return ($j(elem).attr('style').match(/none/)) ? true : false;
     }
 //}}}
 //{{{ Lekérdezések
@@ -263,6 +277,7 @@ var fozelek=new function() {
     
     var error = function( msg ) {
         $('error').innerHTML = $('error').innerHTML + msg + CRLF;
+        display('error');
     }
 //}}}
 //{{{ Start
