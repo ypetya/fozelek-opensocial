@@ -31,7 +31,7 @@
     <!-- loader -->
         gadgets.window.adjustHeight(300); 
         gadgets.util.registerOnLoadHandler(fozelek.init);
-        var navToCanvas(){
+        function navToCanvas(){
             gadgets.views.requestNavigateTo(gadgets.views.getSupportedViews()["canvas"]);
         }
     </script>
