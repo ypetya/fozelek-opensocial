@@ -73,6 +73,7 @@
                 return false;
         }
 */
+
         var load = function(data) {
             info('Megjött a válasz!');
             var viewer = data.get('viewer').getData();
