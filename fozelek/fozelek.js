@@ -32,6 +32,7 @@ var fozelek=new function() {
       Event.stop(event);
       show( text );
       logActivity( text );
+      hide('kutatas');
     }
 
     // Ez az adat a felposztoláshoz kell
@@ -152,7 +153,6 @@ var fozelek=new function() {
             hide('choice');
         }
         else {
-            //a sa
             valasz(false,szereted);
         }
 
@@ -167,12 +167,8 @@ var fozelek=new function() {
     }
 
     var hide = function(mit){
-        switch(mit){
-            case 'choice':
-                //$('kutatas').update('');
-                $('kutatas').style="display:none";
-                break;
-        }
+        //$('kutatas').update('');
+        $(mit).style="display:none";
     }
 
 
