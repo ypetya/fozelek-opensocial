@@ -82,7 +82,7 @@
         }
 
         var load = function(data) {
-            log('Megjött a válasz!');
+            info('Megjött a válasz!');
             var viewer = data.get('viewer').getData();
             var owner = data.get('owner').getData();
         }
@@ -111,13 +111,13 @@
             */
 
 
-            log('OnInit: Elküldöm az első requestData-kérést');
+            info('OnInit: Elküldöm az első requestData-kérést');
             req.send(load);
         }
 
         return {
             init: function() {
-               log('init');
+               info('init');
                $('igen').observe('click', igen);
                $('nem').observe('click', nem);
                requestData();
@@ -125,7 +125,7 @@
         }
     }();
 
-    log('Meghívja a fozelek.init-et');
+    info('Meghívja a fozelek.init-et');
     gadgets.util.registerOnLoadHandler(fozelek.init);
 </script>
 
@@ -142,6 +142,7 @@
 
 </div>
 
+<br/>
 
 <div id="log">Ide loggolunk...
 </div>
