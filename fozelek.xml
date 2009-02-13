@@ -117,12 +117,12 @@
 
             info: function( msg ) {
                 alert( msg );
-                log( msg, 'undefined');
+//                log( msg, 'undefined');
             }
 
             init: function() {
                alert('init');
-               info('init');
+  //             info('init');
                $('igen').observe('click', igen);
                $('nem').observe('click', nem);
                requestData();
@@ -130,8 +130,8 @@
         }
     }();
     alert('1');
-    fozelek.info('Meghívja a fozelek.init-et');
-    alert('2');
+//    fozelek.info('Meghívja a fozelek.init-et');
+  //  alert('2');
     gadgets.util.registerOnLoadHandler(fozelek.init);
 </script>
 
