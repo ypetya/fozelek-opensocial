@@ -31,11 +31,16 @@
     <!-- loader -->
         gadgets.window.adjustHeight(300); 
         gadgets.util.registerOnLoadHandler(fozelek.init);
+        var navToCanvas(){
+            gadgets.views.requestNavigateTo(gadgets.views.getSupportedViews()["canvas"]);
+        }
     </script>
 
     <div id="error" style="display:none"></div>
 
-    <h2 id="az_igazsag" style="display:none"> :) </h2>
+    <label id="az_igazsag" style="display:none"> :) </label>
+    
+    <a onclick="javascript:navToCanvas();">úgy gondolom</a>    
 
     <form id="megsem" style="display:none">
         <p>
