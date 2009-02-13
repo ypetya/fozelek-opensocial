@@ -19,6 +19,8 @@ var fozelek=new function() {
         log('logActivity',txt);
     }
 
+//{{{ Küldő rész
+
     //beupdateljük az igazságot, ez majd segít eldönteni a finomfőzelékről...
     var lockDown = function(event,text) {
       Event.stop(event);
@@ -26,6 +28,7 @@ var fozelek=new function() {
       logActivity( text );
     }
 
+    // ez az adat a felposztoláshoz kell
     var adat = false;
 
     var sendData = function( varname, data ) {
@@ -49,6 +52,8 @@ var fozelek=new function() {
         sendData( 'fozelek', 'nem' );
         lockDown(event, NEM_SZERETED);
     }
+//}}}
+
 
     var extractFozelekData = function(data, person) {
         if(person != null && data[person.getId()]) {
@@ -63,6 +68,8 @@ var fozelek=new function() {
 
         return false;
     }
+
+//{{{ Adatok kiiratása
 
     var show = function(text) {
         info('show',text);
@@ -99,7 +106,8 @@ var fozelek=new function() {
             st.update( 'Ismerőseid ' + ((ennyien / ennyibol) * 100).toString() + '%-a szereti a főzeléket!');
         }
     }
-
+//}}}
+//{{{ Callback függvények
     var load_stat = function(data) {
         info('Megjött a válasz a statisztika lekérdezésre');
 
@@ -113,13 +121,6 @@ var fozelek=new function() {
         });
 
         show_stat();
-    }
-    
-    var start_stat = function() {
-        ennyibol = 1;
-        ennyien = 0;
-        requestData( 'stat', load_stat );
-        setTimeout( start_stat, 60000 );
     }
 
     var load = function(data) {
@@ -149,10 +150,19 @@ var fozelek=new function() {
 
         start_stat();
     }
+//}}}
+    var start_stat = function() {
+        ennyibol = 1;
+        ennyien = 0;
+        requestData( 'stat', load_stat );
+        setTimeout( start_stat, 60000 );
+    }
 
     var hide_choice = function(){
         $('kutatas').update('');
     }
+
+//{{{ Lekérdezések
 
     /* a method-dal lehet megadni, hogy melyik lekérést hajtsuk végre */
     var requestData = function( method, callbackfunction ){
@@ -190,6 +200,8 @@ var fozelek=new function() {
         log('OnInit: Elküldöm a requestData-kérést',method);
         req.send(callbackfunction);
     }
+//}}}
+//{{{ Loggolás a fejlesztéshez
 
     var log = function( variable, val) {
             if(!DEBUG) return;
@@ -201,7 +213,8 @@ var fozelek=new function() {
     var info = function( msg ) {
             log( msg, 'undefined');
         }
-
+//}}}
+//{{{ Start
     return {
         init: function() {
            info('init.');
@@ -210,5 +223,6 @@ var fozelek=new function() {
            requestData('init',load);
         }
     }
+//}}}
 }();
 
