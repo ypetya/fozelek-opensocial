@@ -74,7 +74,8 @@
         }
 
         var extractFozelekData = function(data, person) {
-            if(data[person.getId()]) {
+            
+            if(person != 'undefined' && data[person.getId()]) {
                 var fozi = gadgets.json.parse(gadgets.util.unescapeString(data[person.getId()]['fozelek']));
                         if( fozi.szereti == "igen" ){
                             return true;
@@ -108,7 +109,7 @@
             log( 'Ennyien', ennyien);
             var st = $('statisztika');
             if(ennyien == 0){
-                st.update( 'Senki sem szereti a főzeléket! Milyen dolog ez?' );
+                st.update( 'Még senki sem szereti a főzeléket! Milyen dolog ez?' );
             }
             else {
                 if( ennyibol == 0 ) return;
