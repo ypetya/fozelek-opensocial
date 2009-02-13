@@ -80,8 +80,8 @@
         }
 
         var extractFozelekData = function(data, person) {
-            log('person',person);
             if(person != null && data[person.getId()]) {
+                log('person',person.getId());
                 var fozi = gadgets.json.parse(gadgets.util.unescapeString(data[person.getId()]['fozelek']));
                 log('fozi',fozi['szereti']);
                 if( fozi['szereti'] == "igen" ){
@@ -89,7 +89,7 @@
                 }
             }
 
-                return false;
+            return false;
         }
 
         var show = function(text) {
