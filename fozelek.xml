@@ -28,7 +28,10 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js"></script>
 <script type="text/javascript">
     var fozelek=new function() {
+        // Konstantsok
         var CRLF = '<br/>';
+        var SZERETED = 'Feltétlen főtt étel!';
+        var NEM_SZERETED ='Nem szeretem a főzeléket!';
 
         var logActivity = function( txt ) {
             //történés rögzítése
@@ -46,12 +49,6 @@
           logActivity( text );
         }
 
-/*        var getData = function( varname ) {
-            var req = opensocial.newDataRequest();
-            req.add(req.newUpdatePersonAppDataRequest("VIEWER", 'workHours', {hours:hours}));
-            req.send();
-        }*/
-
         var sendData = function( varname, data ) {
             var req = opensocial.newDataRequest();
             req.add(req.newUpdatePersonAppDataRequest("VIEWER", varname, data));
@@ -61,13 +58,13 @@
         var igen = function(event) {
             log('Gombnyomás','igen');
             sendData( 'fozelek', {szereti:igen} );
-            lockDown(event,'Feltétlen főtt étel!');
+            lockDown(event, SZERETED);
         }
 
         var nem = function(event) {
             log('Gombnyomás','nem');
             sendData( 'fozelek', {szereti:nem} );
-            lockDown(event,'Nem szeretem a főzeléket!' );
+            lockDown(event, NEM_SZERETED);
         }
 
         var extractFozelekData = function(data, person) {
@@ -81,14 +78,26 @@
                 return false;
         }
 
+        var show = function(text) {
+            info('show',text);
+            $('az_igazsag').innerHTML = text;
+        }
+
         var load = function(data) {
             info('Megjött a válasz!');
             var viewer = data.get('viewer').getData();
             var owner = data.get('owner').getData();
 
             log('viewer', viewer.getId());
-            log('data', extractFozelekData(data,viewer));
-            log('owner',owner.getId());
+            var szereted = extractFozelekData(data,viewer);
+            log('data', szereted );
+
+            if(szereted){
+                show(SZERETED);
+            }
+            else {
+                show(NEM_SZERETED);
+            }
         }
 
         /* a method-dal lehet megadni, hogy melyik lekérést hajtsuk végre */
