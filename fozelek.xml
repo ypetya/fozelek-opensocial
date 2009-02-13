@@ -78,45 +78,53 @@
             info('Megjött a válasz!');
             var viewer = data.get('viewer').getData();
             var owner = data.get('owner').getData();
+            log('viewer',viewer);
+            log('owner',owner);
         }
 
-        var requestData = function(){
+        /* a method-dal lehet megadni, hogy melyik lekérést hajtsuk végre */
+        var requestData = function( method ){
             var viewer = opensocial.newIdSpec({ "userId" : "VIEWER" });
             var owner = opensocial.newIdSpec({ "userId" : "OWNER" });
             var req = opensocial.newDataRequest();
+
             req.add(req.newFetchPersonRequest(opensocial.IdSpec.PersonId.VIEWER), 'viewer');
             req.add(req.newFetchPersonRequest(opensocial.IdSpec.PersonId.OWNER), 'owner');
-            req.add(req.newFetchPersonAppDataRequest(viewer, 'fozelek'), 'viewerData');
-            req.add(req.newFetchPersonAppDataRequest(owner, 'fozelek'), 'ownerData');
-            
-            /* ezt a háttérben kéne kigyűjteni :)
-            var friends_params = {};
-            friends_params[opensocial.DataRequest.PeopleRequestFields.MAX] = 20;
-            //név szerint rendezve
-            friends_params[opensocial.DataRequest.PeopleRequestFields.SORT_ORDER] = opensocial.DataRequest.SortOrder.NAME;
-            //csak azokat, akiknek telepítve van az alkalmazás
-            friends_params[opensocial.DataRequest.PeopleRequestFields.FILTER] =	opensocial.DataRequest.FilterType.HAS_APP;
-            var ownerFriends = opensocial.newIdSpec({ "userId" : "OWNER", "groupId" : "FRIENDS" });
-            //ismerősök, es a hozzájuk tartozó alkalmazás-adatok
-            req.add(req.newFetchPeopleRequest(ownerFriends, friends_params), 'ownerFriends');
-            req.add(req.newFetchPersonAppDataRequest(ownerFriends, 'fozelek', friends_params), 'ownerFriendsData');
 
-            */
+            switch(method) {
+                case 'init' :
+                    req.add(req.newFetchPersonAppDataRequest(viewer, 'fozelek'), 'viewerData');
+                    req.add(req.newFetchPersonAppDataRequest(owner, 'fozelek'), 'ownerData');
+                    break;
+                case 'relations' :
+                    /* ezt a háttérben kéne kigyűjteni :) */
+                    var friends_params = {};
+                    friends_params[opensocial.DataRequest.PeopleRequestFields.MAX] = 20;
+                    //név szerint rendezve
+                    friends_params[opensocial.DataRequest.PeopleRequestFields.SORT_ORDER] = opensocial.DataRequest.SortOrder.NAME;
+                    //csak azokat, akiknek telepítve van az alkalmazás
+                    friends_params[opensocial.DataRequest.PeopleRequestFields.FILTER] =	opensocial.DataRequest.FilterType.HAS_APP;
+                    var ownerFriends = opensocial.newIdSpec({ "userId" : "OWNER", "groupId" : "FRIENDS" });
+                    //ismerősök, es a hozzájuk tartozó alkalmazás-adatok
+                    req.add(req.newFetchPeopleRequest(ownerFriends, friends_params), 'ownerFriends');
+                    req.add(req.newFetchPersonAppDataRequest(ownerFriends, 'fozelek', friends_params), 'ownerFriendsData');
+                    break;
+                default:
+                    break;
+            }
 
 
-            info('OnInit: Elküldöm az első requestData-kérést');
+            log('OnInit: Elküldöm a requestData-kérést',method);
             req.send(load);
         }
 
         var log = function( variable, val) {
-//                alert(variable);
                 var value_part = '';
                 if( val != 'undefined' ) value_part = ' : "' + val + '"';
                 $('log').innerHTML = $('log').innerHTML + variable + value_part + CRLF;
             }
 
         var info = function( msg ) {
-//                alert( msg );
                 log( msg, 'undefined');
             }
 
@@ -125,10 +133,11 @@
                info('init.');
                $('igen').observe('click', igen);
                $('nem').observe('click', nem);
-               requestData();
+               requestData('init');
             }
         }
     }();
+
     gadgets.util.registerOnLoadHandler(fozelek.init);
 </script>
 
@@ -147,8 +156,7 @@
 
 <br/>
 
-<div id="log">Ide loggolunk...
-</div>
+<div id="log"></div>
 ]]>
 
 </Content> 
