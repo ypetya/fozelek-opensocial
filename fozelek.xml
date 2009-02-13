@@ -4,11 +4,11 @@
         title="Feltétlenül főtt étel" 
         author="Kiss Péter" 
         author_email="ypetya@gmail.com"
-        author_link="http://gadgets.virgosystems.hu/~ypetya/author.html"
-        author_photo="http://gadgets.virgosystems.hu/~ypetya/author_photo.jpg"
-        screenshot="http://gadgets.virgosystems.hu/~ypetya/fozelek/screenshot.jpg"
-        thumbnail="http://gadgets.virgosystems.hu/~ypetya/fozelek/thumbnail.jpg"
-        title_url="http://gadgets.virgosystems.hu/~ypetya/fozelek/title.html"
+        author_link="http://gadget.virgosystems.hu/~ypetya/author.html"
+        author_photo="http://gadget.virgosystems.hu/~ypetya/author_photo.jpg"
+        screenshot="http://gadget.virgosystems.hu/~ypetya/fozelek/screenshot.jpg"
+        thumbnail="http://gadget.virgosystems.hu/~ypetya/fozelek/thumbnail.jpg"
+        title_url="http://gadget.virgosystems.hu/~ypetya/fozelek/title.html"
         decription="Ez az alkalmazás a finomfőzelék c. paradoxon feloldására született. A főzelék, amely állítólag nevével ellentétben soha nem finom! Segítsünk hát neki!"
         >
         <Require feature="opensocial-0.8"/>
@@ -26,7 +26,7 @@
 <![CDATA[
 <!-- == Fő nézet ===================================== -->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js"></script>
-<script type="text/javascript" src="http://gadgets.virgosystems.hu/~ypetya/fozelek/fozelek.js"></script>
+<script type="text/javascript" src="http://gadget.virgosystems.hu/~ypetya/fozelek/fozelek.js"></script>
 <script type="text/javascript">
 <!-- loader -->
 gadgets.util.registerOnLoadHandler(fozelek.init);
