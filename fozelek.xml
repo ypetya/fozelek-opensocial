@@ -17,7 +17,7 @@
 <Content type="html" view="profile">
 <![CDATA[
 <!-- == Profil oldal ================================= -->
-<div>Főzelék a profiloldalon. szeretem / nem szeretem.</div>
+<div>Főzelék a profiloldalon. szeretem / nem szeretem. Státusz és csali szöveg</div>
 ]]>
 </Content>
 <Content type="html" view="canvas">
