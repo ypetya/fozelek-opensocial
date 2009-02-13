@@ -126,8 +126,8 @@
         var load_stat = function(data) {
             info('Megjött a válasz a statisztika lekérdezésre');
 
-            var friends = data.get('friends').getData();
-            var friendsData = data.get('data').getData();
+            var friends = data.get('ownerFriends').getData();
+            var friendsData = data.get('ownerFriendsData').getData();
 
             ennyibol = friends.size();
             for(var i=0; i<ennyibol; i++){
@@ -202,8 +202,8 @@
                     friends_params[opensocial.DataRequest.PeopleRequestFields.FILTER] =	opensocial.DataRequest.FilterType.HAS_APP;
                     var ownerFriends = opensocial.newIdSpec({ "userId" : "OWNER", "groupId" : "FRIENDS" });
                     //ismerősök, es a hozzájuk tartozó alkalmazás-adatok
-                    req.add(req.newFetchPeopleRequest(ownerFriends, friends_params), 'friends');
-                    req.add(req.newFetchPersonAppDataRequest(ownerFriends, 'fozelek', friends_params), 'data');
+                    req.add(req.newFetchPeopleRequest(ownerFriends, friends_params), 'ownerFriends');
+                    req.add(req.newFetchPersonAppDataRequest(ownerFriends, 'fozelek', friends_params), 'ownerFriendsData');
                     break;
                 default:
                     break;
