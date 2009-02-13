@@ -83,6 +83,7 @@
             if(person != null && data[person.getId()]) {
                 log('person',person.getId());
                 log('data',data['szereti']);
+
                 var fozi = gadgets.json.parse(gadgets.util.unescapeString(data[person.getId()]['fozelek']));
                 log('fozi',fozi['szereti']);
                 if( fozi['szereti'] == "igen" ){
