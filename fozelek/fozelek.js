@@ -222,7 +222,7 @@ var fozelek=new function() {
         //itt jön a logika, => ha nem a sajátomat nézem, akkor
         if(idegen_oldal(viewer)) {
             valasz(true,szereti);
-            en_pedig(szereted);
+            en_pedig(szereti,szereted);
         }
         else {
             valasz(false,szereted);
