@@ -45,7 +45,7 @@
     <div class="admin_message">
         <h4 id="az_igazsag" style="display:none"> :) </h4>
         <img class="icon" src="http://static.iwiw.net/common/image/icon_home_mm_transp.png"/>
-        <p>
+        <p id='finom' style="display:none">
             <span id="es">Én pedig</span>
             <a onclick='javascript: gadgets.views.requestNavigateTo(gadgets.views.getSupportedViews()["canvas"]);'>úgy gondolom</a>,
             hogy <span id="gondolom">...</span>
