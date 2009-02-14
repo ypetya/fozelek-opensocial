@@ -2,15 +2,15 @@
 
  * added git repository and post-commit hook to self deploy
 
-
 == Gadget applications
 
- Sorry, hungarian section
+ Sorry, hungarian section. These applications are experimental and for tutorial reasons.
 
 === fozelek
 
+ * Feladat, a finomfőzelék fogalom statisztikai állásának kiderítése
 
-=== TODO
+=== FUTURE PLANS, TODO
 
  - ikonok
  - canvas view design.
@@ -19,6 +19,6 @@
  - saját canvas view
     - pár utolsó meggyőzés kiírása
 
-mindezt szerver oldalon két twitter (lassú, akkor db)
-accountra kötött cucc csinálhatná.. :)
- 
+ - szerver oldalon:
+    - a globális % állása!
+    - érvek / ellenérvek
