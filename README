@@ -1,3 +1,24 @@
 = This is my gadgets place
 
  * added git repository and post-commit hook to self deploy
+
+
+== Gadget applications
+
+ Sorry, hungarian section
+
+=== fozelek
+
+
+=== TODO
+
+ - ikonok
+ - canvas view design.
+ - idegen canvas view
+    - meggyőzési lehetőség beépítése
+ - saját canvas view
+    - pár utolsó meggyőzés kiírása
+
+mindezt szerver oldalon két twitter (lassú, akkor db)
+accountra kötött cucc csinálhatná.. :)
+ 
