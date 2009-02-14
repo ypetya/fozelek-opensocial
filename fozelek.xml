@@ -40,7 +40,8 @@
         <img class="icon" src="http://static.iwiw.net/common/image/icon_home_mm_transp.png"/>
         <p>
             Én pedig
-            <a onclick='javascript: //gadgets.views.requestNavigateTo(gadgets.views.getSupportedViews()["canvas"]);'>úgy gondolom</a>
+            <a onclick='javascript: //gadgets.views.requestNavigateTo(gadgets.views.getSupportedViews()["canvas"]);'>úgy gondolom</a>,
+            hogy <span id="gondolom">...</span>
         </p>
     </div>
         

@@ -9,8 +9,11 @@ var fozelek=new function() {
     var SZERETED = 'Feltétlen főtt étel!';
     var SZERETI = 'Szereti a főzeléket!';
     var NEM_SZERETED ='Nem szeretem a főzeléket!';
-    var NEM_SZERETI = ' nem szereti a főzeléket!';
+    var NEM_SZERETI = 'Nem szereti a főzeléket!';
     var REFRESHTIMEOUT = 60000;
+    var FINOM = 'finom!';
+    var NEM_FINOM = 'nem finom!';
+
 //}}}
 //{{{ Számlálók
     var ennyibol = 0;
@@ -114,11 +117,16 @@ var fozelek=new function() {
 
     var valasz = function(idegen,igazsag) {
         if(igazsag){
-            show(idegen ? ownerName + SZERETI : SZERETED);
+            show(idegen ? SZERETI : SZERETED);
         }
         else {
-            show(idegen ? ownerName + NEM_SZERETI : NEM_SZERETED);
+            show(idegen ? NEM_SZERETI : NEM_SZERETED);
         }
+    }
+
+    var en_pedig = function(szeretem) {
+        $('gondolom').update( szeretem ? FINOM : NEM_FINOM );
+        display('finom');
     }
 
     var show_stat = function() {
@@ -186,6 +194,7 @@ var fozelek=new function() {
     }
 
 
+
     // Itt a saját adatainkat
     var load = function(data) {
         if(is_error(data)) return;
@@ -211,6 +220,7 @@ var fozelek=new function() {
         //itt jön a logika, => ha nem a sajátomat nézem, akkor
         if(idegen_oldal(viewer)) {
             valasz(true,szereti);
+            en_pedig(szereted);
         }
         else {
             valasz(false,szereted);
