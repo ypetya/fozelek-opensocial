@@ -34,7 +34,7 @@
             try{
                 gadgets.window.adjustHeight(70); 
             }
-            catch{}
+            catch(err){}
         }
         adjustH();
         gadgets.util.registerOnLoadHandler(fozelek.init);
@@ -90,7 +90,7 @@
             try{
                 gadgets.window.adjustHeight(100); 
             }
-            catch{}
+            catch(err){}
         }
         adjustH();
         gadgets.util.registerOnLoadHandler(fozelek.init);
