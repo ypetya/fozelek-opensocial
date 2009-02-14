@@ -126,7 +126,7 @@ var fozelek=new function() {
     }
 
     var en_pedig = function(szereti,szeretem) {
-        $('es').update( szereti == szeretem ? EN_IS, EN_PEDIG );
+        $('es').update( szereti == szeretem ? EN_IS : EN_PEDIG );
         $('gondolom').update( szeretem ? FINOM : NEM_FINOM );
         display('finom');
     }
