@@ -7,6 +7,7 @@
         author_link="http://gadget.virgosystems.hu/~ypetya/author.html"
         author_photo="http://gadget.virgosystems.hu/~ypetya/author_photo.jpg"
         screenshot="http://gadget.virgosystems.hu/~ypetya/fozelek/screenshot.jpg"
+        icon="http://gadget.virgosystems.hu/~ypetya/fozelek/icon.jpg"
         thumbnail="http://gadget.virgosystems.hu/~ypetya/fozelek/thumbnail.jpg"
         title_url="http://gadget.virgosystems.hu/~ypetya/fozelek/title.html"
         decription="Ez az alkalmazás a finomfőzelék c. paradoxon feloldására született. A főzelék, amely állítólag nevével ellentétben soha nem finom! Segítsünk hát neki!"
@@ -29,7 +30,13 @@
     <script type="text/javascript" src="http://gadget.virgosystems.hu/~ypetya/fozelek/fozelek.js"></script>
     <script type="text/javascript">
     <!-- loader -->
-        gadgets.window.adjustHeight(70); 
+        function adjustH(){
+            try{
+                gadgets.window.adjustHeight(70); 
+            }
+            catch{}
+        }
+        adjustH();
         gadgets.util.registerOnLoadHandler(fozelek.init);
     </script>
 
@@ -39,8 +46,8 @@
         <h4 id="az_igazsag" style="display:none"> :) </h4>
         <img class="icon" src="http://static.iwiw.net/common/image/icon_home_mm_transp.png"/>
         <p>
-            Én pedig
-            <a onclick='javascript: //gadgets.views.requestNavigateTo(gadgets.views.getSupportedViews()["canvas"]);'>úgy gondolom</a>,
+            <span id="es">Én pedig</span>
+            <a onclick='javascript: gadgets.views.requestNavigateTo(gadgets.views.getSupportedViews()["canvas"]);'>úgy gondolom</a>,
             hogy <span id="gondolom">...</span>
         </p>
     </div>
@@ -79,7 +86,13 @@
     <script type="text/javascript" src="http://gadget.virgosystems.hu/~ypetya/fozelek/fozelek.js"></script>
     <script type="text/javascript">
     <!-- loader -->
-        gadgets.window.adjustHeight(100); 
+        function adjustH(){
+            try{
+                gadgets.window.adjustHeight(100); 
+            }
+            catch{}
+        }
+        adjustH();
         gadgets.util.registerOnLoadHandler(fozelek.init);
     </script>
 

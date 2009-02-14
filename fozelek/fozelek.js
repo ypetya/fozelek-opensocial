@@ -13,7 +13,8 @@ var fozelek=new function() {
     var REFRESHTIMEOUT = 60000;
     var FINOM = 'finom!';
     var NEM_FINOM = 'nem finom!';
-
+    var EN_IS = 'És én is';
+    var EN_PEDIG = 'Én pedig';
 //}}}
 //{{{ Számlálók
     var ennyibol = 0;
@@ -124,7 +125,8 @@ var fozelek=new function() {
         }
     }
 
-    var en_pedig = function(szeretem) {
+    var en_pedig = function(szereti,szeretem) {
+        $('es').update( szereti == szeretem ? EN_IS, EN_PEDIG );
         $('gondolom').update( szeretem ? FINOM : NEM_FINOM );
         display('finom');
     }
